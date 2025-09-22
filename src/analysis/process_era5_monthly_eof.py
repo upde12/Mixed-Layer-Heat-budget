@@ -1,4 +1,6 @@
+import argparse
 import math
+import re
 from pathlib import Path
 
 import numpy as np
@@ -11,16 +13,37 @@ TARGET_VAR = 'metss'
 CHUNKS = {'time': 744, 'latitude': 70, 'longitude': 140}
 
 
-def build_monthly_dataset():
+def _filter_files(files, start_year=None, end_year=None):
+    def extract_year(path: Path) -> int:
+        match = re.match(r'download(\d{4})', path.stem)
+        if not match:
+            return None
+        return int(match.group(1))
+
+    selected = []
+    for f in files:
+        year = extract_year(f)
+        if year is None:
+            continue
+        if start_year is not None and year < start_year:
+            continue
+        if end_year is not None and year > end_year:
+            continue
+        selected.append(f)
+    return selected
+
+
+def build_monthly_dataset(start_year=None, end_year=None, resume=False):
     files = sorted(DATA_DIR.glob('download*.nc'))
     if not files:
         raise FileNotFoundError(f'No download*.nc files found in {DATA_DIR}')
 
-    OUTPUT_MONTHLY.parent.mkdir(parents=True, exist_ok=True)
-    if OUTPUT_MONTHLY.exists():
-        OUTPUT_MONTHLY.unlink()
+    files = _filter_files(files, start_year, end_year)
+    if not files:
+        raise ValueError('선택한 연도 범위에 해당하는 파일이 없습니다.')
 
-    first = True
+    OUTPUT_MONTHLY.parent.mkdir(parents=True, exist_ok=True)
+    new_monthlies = []
     for path in files:
         with xr.open_dataset(path, engine='netcdf4', chunks=CHUNKS) as ds:
             if TARGET_VAR not in ds:
@@ -34,18 +57,21 @@ def build_monthly_dataset():
                 .astype('float32')
                 .compute()
             )
+            new_monthlies.append(monthly)
+            print(f'[{path.name}] 저장 준비 완료')
 
-            monthly_ds = monthly.to_dataset(name=TARGET_VAR)
-            mode = 'w' if first else 'a'
-            monthly_ds.to_netcdf(
-                OUTPUT_MONTHLY,
-                mode=mode,
-                engine='netcdf4',
-                unlimited_dims='time'
-            )
-            first = False
-            print(f'[{path.name}] 저장 완료')
+    combined = xr.concat(new_monthlies, dim='time') if new_monthlies else None
+    if combined is None:
+        raise RuntimeError('월평균 계산 결과가 비어 있습니다.')
 
+    if resume and OUTPUT_MONTHLY.exists():
+        with xr.open_dataset(OUTPUT_MONTHLY) as existing_ds:
+            existing = existing_ds[TARGET_VAR]
+            combined = xr.concat([existing, combined], dim='time')
+
+    combined_ds = combined.to_dataset(name=TARGET_VAR)
+    combined_ds.to_netcdf(OUTPUT_MONTHLY, mode='w', engine='netcdf4')
+    print(f'총 {combined.sizes["time"]} 개 월평균 기록 저장 완료')
     return xr.open_dataset(OUTPUT_MONTHLY)
 
 
@@ -63,7 +89,11 @@ def compute_eof(monthly, n_modes=5):
 
     # Weight by sqrt(cos(lat)) to respect area
     weights_lat = np.sqrt(np.cos(np.deg2rad(lat)))
-    weights_2d = xr.DataArray(weights_lat[:, None], coords={'latitude': lat, 'longitude': lon}, dims=('latitude', 'longitude'))
+    weights_2d = xr.DataArray(
+        weights_lat[:, None] * np.ones((lat.size, lon.size)),
+        coords={'latitude': lat, 'longitude': lon},
+        dims=('latitude', 'longitude')
+    )
     weighted = (anom * weights_2d).transpose('time', 'latitude', 'longitude')
 
     stacked = weighted.stack(space=('latitude', 'longitude'))
@@ -119,8 +149,16 @@ def compute_eof(monthly, n_modes=5):
 
 
 def main():
-    monthly = build_monthly_dataset()
-    compute_eof(monthly)
+    parser = argparse.ArgumentParser(description='ERA5 월평균 및 EOF 계산')
+    parser.add_argument('--start-year', type=int, help='처리 시작 연도 (예: 1993)')
+    parser.add_argument('--end-year', type=int, help='처리 종료 연도 (예: 1997)')
+    parser.add_argument('--resume', action='store_true', help='기존 월평균 파일 유지 후 이어서 기록')
+    parser.add_argument('--skip-eof', action='store_true', help='EOF 계산을 건너뜀')
+    args = parser.parse_args()
+
+    monthly = build_monthly_dataset(args.start_year, args.end_year, args.resume)
+    if not args.skip_eof:
+        compute_eof(monthly)
 
 
 if __name__ == '__main__':

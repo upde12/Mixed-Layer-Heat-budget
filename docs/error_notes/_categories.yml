@@ -1,0 +1,16 @@
+# 오답노트 범주 정의 (필요 시 확장 가능)
+- id: data_io
+  name: 데이터 I/O
+  description: 파일 접근, 포맷, 읽기/쓰기, 경로, 메모리/디스크 변환 등과 관련된 문제
+- id: performance
+  name: 성능/자원
+  description: 처리 속도, 메모리, 병렬 처리, 스케줄링 등 최적화 관련 이슈
+- id: visualization
+  name: 시각화
+  description: 지도/그래프, 컬러맵, 플롯 레이아웃, 렌더링 등 시각 표현 문제
+- id: environment
+  name: 환경/의존성
+  description: 패키지 버전, OS 제약, 가상환경, 빌드 도구 관련 이슈
+- id: remote_ops
+  name: 원격/네트워크
+  description: SSH, 원격 서버, 권한, 네트워크 차단 등 외부 시스템 문제
