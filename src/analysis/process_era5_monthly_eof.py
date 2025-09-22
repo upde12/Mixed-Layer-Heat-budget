@@ -26,6 +26,7 @@ def build_monthly_dataset():
             if TARGET_VAR not in ds:
                 raise KeyError(f'{TARGET_VAR} not found in {path}')
 
+            print(f'[{path.name}] 월평균 계산 중...')
             monthly = (
                 ds[TARGET_VAR]
                 .resample(time='MS')
@@ -43,6 +44,7 @@ def build_monthly_dataset():
                 unlimited_dims='time'
             )
             first = False
+            print(f'[{path.name}] 저장 완료')
 
     return xr.open_dataset(OUTPUT_MONTHLY)
 
@@ -51,6 +53,7 @@ def compute_eof(monthly, n_modes=5):
     if 'metss' not in monthly:
         raise KeyError('Monthly dataset does not contain "metss" variable needed for EOF analysis')
 
+    print('EOF 분석 시작...')
     metss = monthly['metss']
     # Remove mean
     anom = metss - metss.mean(dim='time')
@@ -111,6 +114,7 @@ def compute_eof(monthly, n_modes=5):
 
     eof_ds = xr.Dataset({'EOFs': eof_da, 'PCs': pc_da, 'explained_variance_ratio': var_da})
     eof_ds.to_netcdf(OUTPUT_EOF)
+    print('EOF 분석 완료: 결과 저장됨')
     return eof_ds
 
 
