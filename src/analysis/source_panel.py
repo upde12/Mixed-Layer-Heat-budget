@@ -273,7 +273,8 @@ def _compute_rhs_anomalies(
     RHSmm = np.nanmean(RHSm, axis=1)
     RHSa = RHSm - RHSmm[:, None, :, :]
     rhs_anom = np.nanmean(RHSa[:, ti : tl + 1, :, :], axis=1)
-    rhs_anom *= SECONDS_PER_DAY * DAYS_PER_YEAR
+    # Convert K s^-1 to K decade^-1
+    rhs_anom *= SECONDS_PER_DAY * DAYS_PER_YEAR * 10.0
     return rhs_anom
 
 
@@ -287,6 +288,7 @@ def compute_budget_fields(base_dir: Path) -> BudgetFields:
     T = read_fbinary(data_dir / "T_ML.data", shape)
     qnet = read_fbinary(data_dir / "qnet.data", shape)
     adv = read_fbinary(data_dir / "adv.data", shape)
+    adv = smth9(adv, 0.50, 0.25, wrap=True)
     adv = smth9(adv, 0.50, 0.25, wrap=True)
     adv = smth9(adv, 0.50, 0.25, wrap=True)
 
@@ -391,7 +393,7 @@ def plot_trend_map(fields: BudgetFields, output: Path) -> None:
 
     lon2d, lat2d = np.meshgrid(fields.lon, fields.lat)
     cmap = plt.get_cmap("RdBu_r")
-    levels_trend = np.linspace(-1.5, 1.5, 17)
+    levels_trend = np.linspace(-2.5, 2.5, 21)
 
     cs = ax.contourf(
         lon2d,
@@ -416,7 +418,11 @@ def plot_trend_map(fields: BudgetFields, output: Path) -> None:
     plt.close(fig)
 
 
-def plot_rhs_panels(fields: BudgetFields, output: Path) -> None:
+def plot_rhs_panels(
+    fields: BudgetFields,
+    rhs_anomalies: np.ndarray,
+    output: Path,
+) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
 
     subplot_kwargs = {"projection": ccrs.PlateCarree()} if ccrs is not None else {}
@@ -460,7 +466,8 @@ def plot_rhs_panels(fields: BudgetFields, output: Path) -> None:
 
     lon2d, lat2d = np.meshgrid(fields.lon, fields.lat)
     cmap = plt.get_cmap("RdBu_r")
-    levels_rhs = np.linspace(-10.0, 10.0, 17)
+    # RHS anomalies are in K decade^-1; empirical scale ~O(100) after conversion
+    levels_rhs = np.linspace(-100.0, 100.0, 17)
 
     titles = [
         "Surface Heat Flux (Qnet)",
@@ -474,12 +481,16 @@ def plot_rhs_panels(fields: BudgetFields, output: Path) -> None:
     axes = axes.ravel()
     mappables: list[plt.cm.ScalarMappable] = []
 
-    for idx, (ax, arr, title) in enumerate(zip(axes, fields.rhs_anomalies, titles)):
+    for idx, (ax, arr, title) in enumerate(zip(axes, rhs_anomalies, titles)):
         row, col = divmod(idx, 2)
+        data = np.array(arr, copy=True)
+        if idx == 1:
+            mask = np.isclose(data, 0.0, atol=1e-8)
+            data = np.where(mask, np.nan, data)
         cs = ax.contourf(
             lon2d,
             lat2d,
-            arr,
+            data,
             levels=levels_rhs,
             cmap=cmap,
             extend="both",
@@ -497,7 +508,7 @@ def plot_rhs_panels(fields: BudgetFields, output: Path) -> None:
     cax = fig.add_axes([x0, y0, x1 - x0, 0.02])
     rhs_ticks = _select_tick_values(levels_rhs, max_labels=9)
     cbar = fig.colorbar(mappables[0], cax=cax, orientation="horizontal", ticks=rhs_ticks)
-    cbar.set_label(r"W m$^{-2}$")
+    cbar.set_label(r"K decade$^{-1}$")
     _set_colorbar_ticks(cbar, rhs_ticks)
 
     fig.savefig(output)
@@ -523,7 +534,13 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         "--rhs-output",
         type=Path,
         default=None,
-        help="Destination for the RHS panel figure. Defaults to Figure/budget3_rhs_python.png.",
+        help="Destination for the RHS panel figure using native diffv. Defaults to Figure/budget3_rhs_native_python.png.",
+    )
+    parser.add_argument(
+        "--rhs-residual-output",
+        type=Path,
+        default=None,
+        help="Destination for the RHS panel figure using residual diffv. Defaults to Figure/budget3_rhs_residual_python.png.",
     )
     return parser.parse_args(argv)
 
@@ -532,11 +549,15 @@ def main(argv: Iterable[str] | None = None) -> None:
     args = parse_args(argv)
     figure_dir = args.base_dir / "Figure"
     trend_output = args.trend_output or (figure_dir / "budget3_trend_python.png")
-    rhs_output = args.rhs_output or (figure_dir / "budget3_rhs_python.png")
+    rhs_output = args.rhs_output or (figure_dir / "budget3_rhs_native_python.png")
+    rhs_residual_output = args.rhs_residual_output or (
+        figure_dir / "budget3_rhs_residual_python.png"
+    )
 
     fields = compute_budget_fields(args.base_dir)
     plot_trend_map(fields, trend_output)
-    plot_rhs_panels(fields, rhs_output)
+    plot_rhs_panels(fields, fields.rhs_anomalies_native, rhs_output)
+    plot_rhs_panels(fields, fields.rhs_anomalies_residual, rhs_residual_output)
 
 
 if __name__ == "__main__":
