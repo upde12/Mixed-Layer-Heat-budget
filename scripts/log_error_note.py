@@ -37,6 +37,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--tags", default="", help="쉼표로 구분된 태그 목록")
     parser.add_argument("--related", action="append", default=[], help="관련 파일/링크 (필요 시 여러 번 입력)")
     parser.add_argument("--error-from-stdin", action="store_true", help="표준입력에서 에러 메시지를 읽어온다")
+    parser.add_argument("--allow-duplicate", action="store_true", help="같은 제목 계열의 기존 기록이 있어도 계속 진행")
     parser.add_argument("--dry-run", action="store_true", help="파일을 쓰지 않고 결과만 출력")
     return parser.parse_args(argv)
 
@@ -76,6 +77,34 @@ related:
     return content
 
 
+def find_existing_notes(slug: str, category: str | None = None):
+    candidates = []
+    search_dirs = [NOTES_DIR / category] if category else [NOTES_DIR]
+    for base in search_dirs:
+        if not base.exists():
+            continue
+        for path in base.rglob('*.md'):
+            if path.name in {"README.md", "note_template.md"}:
+                continue
+            if path.parent == NOTES_DIR:
+                continue
+            stem = path.stem.lower()
+            if slug in stem:
+                candidates.append(path)
+                continue
+            try:
+                for line in path.read_text(encoding='utf-8').splitlines():
+                    if line.lower().startswith('title:'):
+                        title = line.split(':', 1)[1].strip().lower()
+                        slug_words = [w for w in slug.split('-') if w]
+                        if slug_words and all(word in title for word in slug_words):
+                            candidates.append(path)
+                        break
+            except UnicodeDecodeError:
+                continue
+    return candidates
+
+
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
 
@@ -88,6 +117,14 @@ def main(argv: list[str] | None = None) -> int:
     category_dir = NOTES_DIR / args.category
     category_dir.mkdir(parents=True, exist_ok=True)
     note_path = category_dir / f"{timestamp}_{slug}.md"
+
+    existing = find_existing_notes(slug, args.category)
+    if existing and not args.allow_duplicate:
+        print("다음과 유사한 오답노트가 이미 존재합니다. 내용을 확인하고 업데이트하세요:", file=sys.stderr)
+        for path in existing:
+            print(f" - {path.relative_to(BASE_DIR)}", file=sys.stderr)
+        print("필요 시 기존 노트를 갱신하거나, 중복이 아님을 확인한 뒤 --allow-duplicate 옵션과 함께 다시 실행하세요.", file=sys.stderr)
+        return 2
 
     content = build_note_content(args)
 
