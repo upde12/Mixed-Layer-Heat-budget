@@ -15,7 +15,7 @@ docs/journal/
 ```
 
 ## 출근 인사("안녕?") 시 수행
-1. `scripts/journal_start.py`를 실행해 전날 `Next Steps`를 자동으로 가져오고 해당 날짜 일지를 생성/업데이트합니다.
+1. `scripts/journal_start.py`를 실행해 전날 `Next Steps`를 자동으로 가져오고 해당 날짜 일지를 생성/업데이트합니다. 스크립트는 전날 완료 항목을 `Yesterday Recap`에 채워 줍니다.
 2. `Focus for Today` 항목을 검토하고 필요하면 추가 수정합니다.
 3. 오답노트를 미리 검색합니다 (`scripts/search_error_notes.py <키워드>`).
 4. 작업 중 발생할 문제에 대비해 `Issues & References` 섹션 링크 자리를 잡아둡니다.

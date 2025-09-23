@@ -6,7 +6,7 @@
 - 오답노트를 참고/갱신하는 과정을 일지의 `Issues & References` 섹션에 기록한다.
 
 ## B. 시작 루틴 체크리스트
-1. `scripts/journal_start.py`를 실행해 전날 일지로부터 `Next Steps`를 자동으로 가져오고 오늘 일지를 생성한다.
+1. `scripts/journal_start.py`를 실행해 전날 일지의 `Next Steps`를 오늘 `Focus for Today`에 자동 배치하고, 완료 항목을 `Yesterday Recap`에 채운다.
 2. `scripts/search_error_notes.py`로 전날 겪은 문제와 관련된 오답노트를 재확인한다.
 3. 필요한 데이터를 미리 준비하고, 예상 리스크를 `Issues & References`에 적어둔다.
 
