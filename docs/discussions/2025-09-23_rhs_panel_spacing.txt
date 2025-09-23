@@ -1,0 +1,38 @@
+Subject: RHS panel spacing discussion and measurements
+Date: 2025-09-23
+
+Context
+- Figures: figures/budget3_rhs_python.png (original), Desktop: 정사각형추가.png (annotated overlay)
+- Task: Compare panel gaps (a–b horizontal vs a–c vertical) and validate with/without square overlays.
+
+Boundaries Used
+- Horizontal: right edge of panel (a) map frame (≈ 140°E line) to left edge of panel (b) map frame (≈ 110°E line).
+- Vertical: bottom edge of panel (a) map frame (≈ 20°N line) to top edge of panel (c) map frame (≈ 45°N line).
+
+Original PNG (figures/budget3_rhs_python.png)
+- Image size: 950×1100 px, embedded DPI ≈ 100 (Matplotlib metadata).
+- Programmatic axes positions (normalized): wspace=0.0, hspace=0.12 produced equal panel bbox gaps.
+- Measured gap by pixel analysis:
+  - a–b horizontal gap ≈ 93 px
+  - a–c vertical gap ≈ 93 px
+- Physical length at DPI≈100: 93 px ≈ 0.94 in ≈ 23.6 mm.
+
+Annotated PNG (Desktop: 정사각형추가.png)
+- Image size: 2145×2479 px (resized/annotated copy).
+- Red square marker(s): one independent square detected at 69×69 px (exact square).
+- Apparent gaps (counting squares):
+  - a–b ≈ 4 squares → ~276 px
+  - a–c ≈ 1 square → ~69 px
+- Note: Horizontal overlay tiles nearly fill the gap; vertical overlay places only one square and leaves extra white margins above/below, so “square count” underestimates the full vertical gap.
+
+Why the discrepancy?
+- The overlay image is a resized/annotated copy; the red squares are accurate squares, but the vertical gap was not tiled from frame-to-frame and thus does not represent the full distance.
+- Direct pixel measurement on the original shows both gaps equal (~93 px).
+
+Takeaways
+- Use panel frame edges for gap measurement; avoid inference from partial overlays.
+- When illustrating with markers, tile the full gap edge-to-edge or provide scale.
+- Option: add a plotting utility to log panel gap lengths in px and mm at save time.
+
+End of record.
+

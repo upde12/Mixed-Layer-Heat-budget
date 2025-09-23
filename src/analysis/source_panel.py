@@ -1,10 +1,11 @@
-"""Python reproduction of the NCL-based mixed-layer heat budget panel figure.
+"""Python reproduction of the NCL-based mixed-layer heat budget diagnostics.
 
 This script mirrors the data ingest, anomaly/regression calculations, and plotting
 performed by ``Figure/source.ncl`` located in the external Decadal work tree.
 It reads the precomputed binary fields, applies the same 9-point smoothing to the
 horizontal advection term, computes the linear trend offsets and RHS anomalies, and
-renders the 4x2 panel figure.
+exports two figures: a stand-alone "total" trend map and a compact 3x2 panel with
+the remaining RHS terms.
 
 Example
 -------
@@ -12,10 +13,11 @@ Run the script from the repository root (adjust base directory if needed)::
 
     python -m src.analysis.source_panel \
         --base-dir /Volumes/HJPARK4/Decadal \
-        --output figures/budget3_python.pdf
+        --trend-output figures/budget3_total.pdf \
+        --rhs-output figures/budget3_rhs.pdf
 
-The output filename is optional; by default the PDF is written next to the original
-``budget3.pdf`` under ``Figure`` inside the Decadal directory.
+If the output paths are omitted, both PDFs are written next to the original
+``budget3`` figures under ``Figure`` inside the Decadal directory.
 """
 from __future__ import annotations
 
@@ -40,6 +42,88 @@ DAYS_PER_YEAR = 365.0
 FILL_VALUE = 9.96921e36
 
 Shape4D = Tuple[int, int, int, int]
+
+
+def _format_level_label(value: float) -> str:
+    """Return a readable tick label without losing significant information."""
+    if not np.isfinite(value):
+        return ""
+    if abs(value) < 1e-12:
+        return "0"
+
+    text = f"{value:.6f}"
+    cleaned = text.rstrip("0").rstrip(".")
+    if cleaned in {"-0", "-0."}:
+        return "0"
+    return cleaned
+
+
+def _select_tick_values(levels: Iterable[float], max_labels: int = 8) -> np.ndarray:
+    values = np.asarray(list(levels), dtype=float)
+    if values.size <= max_labels:
+        return values
+
+    first, last = values[0], values[-1]
+    size = values.size
+    min_step = 1
+    while (size - 1) // min_step + 1 > max_labels:
+        min_step += 1
+
+    zero_idx = int(np.argmin(np.abs(values))) if first < 0 < last else None
+
+    candidate_steps = [s for s in range(min_step, size) if (size - 1) // s + 1 <= max_labels]
+    if not candidate_steps:
+        candidate_steps = [min_step]
+
+    chosen_step = candidate_steps[0]
+    if zero_idx is not None:
+        prioritized = [
+            s
+            for s in candidate_steps
+            if zero_idx % s == 0 and (size - 1) % s == 0
+        ]
+        if not prioritized:
+            prioritized = [s for s in candidate_steps if zero_idx % s == 0]
+        if prioritized:
+            chosen_step = prioritized[0]
+    else:
+        divisible = [s for s in candidate_steps if (size - 1) % s == 0]
+        if divisible:
+            chosen_step = divisible[0]
+
+    indices = list(range(0, size, chosen_step))
+    if indices[-1] != size - 1:
+        indices.append(size - 1)
+
+    if zero_idx is not None and zero_idx not in indices:
+        indices.append(zero_idx)
+
+    indices = sorted(set(indices))
+
+    base_values = values[indices]
+    if zero_idx is not None:
+        zero_value = values[zero_idx]
+        neg = base_values[base_values < 0]
+        pos = base_values[base_values > 0]
+        spacing = values[1] - values[0]
+        # enforce symmetry by mirroring available ticks around zero
+        mirrored_neg = [-p for p in pos]
+        mirrored_pos = [-n for n in neg]
+        combined = np.concatenate((base_values, mirrored_neg, mirrored_pos, [zero_value]))
+        base_values = np.unique(np.round(combined, decimals=6))
+
+    return np.sort(base_values)
+
+
+def _set_colorbar_ticks(cbar, values: Iterable[float]) -> None:
+    numeric = np.asarray(list(values), dtype=float)
+    labels = [_format_level_label(val) for val in numeric]
+    if cbar.orientation == "horizontal":
+        cbar.ax.set_xticks(numeric)
+        cbar.ax.set_xticklabels(labels)
+    else:
+        cbar.ax.set_yticks(numeric)
+        cbar.ax.set_yticklabels(labels)
 
 
 def read_fbinary(path: Path, shape: Shape4D, dtype: np.dtype = np.float32) -> np.ndarray:
@@ -174,7 +258,23 @@ class BudgetFields:
     lat: np.ndarray
     lon: np.ndarray
     trend_offset: np.ndarray
-    rhs_anomalies: np.ndarray
+    rhs_anomalies_native: np.ndarray
+    rhs_anomalies_residual: np.ndarray
+
+
+def _compute_rhs_anomalies(
+    rhs: np.ndarray,
+    ti: int,
+    tl: int,
+) -> np.ndarray:
+    """Return annual-mean RHS anomalies scaled to W m⁻²."""
+
+    RHSm = np.nanmean(rhs, axis=2)
+    RHSmm = np.nanmean(RHSm, axis=1)
+    RHSa = RHSm - RHSmm[:, None, :, :]
+    rhs_anom = np.nanmean(RHSa[:, ti : tl + 1, :, :], axis=1)
+    rhs_anom *= SECONDS_PER_DAY * DAYS_PER_YEAR
+    return rhs_anom
 
 
 def compute_budget_fields(base_dir: Path) -> BudgetFields:
@@ -192,24 +292,33 @@ def compute_budget_fields(base_dir: Path) -> BudgetFields:
 
     ent = read_fbinary(data_dir / "ent.data", shape)
     diff = read_fbinary(data_dir / "diff.data", shape)
-    diffv = read_fbinary(data_dir / "diffv.data", shape)
+    diffv_native = read_fbinary(data_dir / "diffv.data", shape)
+    ten = read_fbinary(data_dir / "ten.data", shape)
 
-    rhs = np.empty((6,) + shape, dtype=np.float32)
-    rhs[0] = qnet
-    rhs[2] = adv.astype(np.float32)
-    rhs[3] = ent
-    rhs[4] = diff
-    rhs[5] = diffv
-    rhs[1] = np.nansum(rhs[2:6], axis=0)
+    # Derive vertical diffusion residually so that Qnet + subsurface terms closes to ten.
+    diffv_residual = ten.astype(np.float64)
+    diffv_residual -= qnet
+    diffv_residual -= adv
+    diffv_residual -= ent
+    diffv_residual -= diff
+    diffv_residual = diffv_residual.astype(np.float32)
+
+    rhs_native = np.empty((6,) + shape, dtype=np.float32)
+    rhs_native[0] = qnet
+    rhs_native[2] = adv.astype(np.float32)
+    rhs_native[3] = ent
+    rhs_native[4] = diff
+    rhs_native[5] = diffv_native
+    rhs_native[1] = np.nansum(rhs_native[2:6], axis=0)
+
+    rhs_residual = rhs_native.copy()
+    rhs_residual[5] = diffv_residual
+    rhs_residual[1] = np.nansum(rhs_residual[2:6], axis=0)
 
     Tm = np.nanmean(T, axis=1)
-    RHSm = np.nanmean(rhs, axis=2)
-
     Tmm = np.nanmean(Tm, axis=0)
-    RHSmm = np.nanmean(RHSm, axis=1)
 
     Ta = Tm - Tmm
-    RHSa = RHSm - RHSmm[:, None, :, :]
 
     ti = 2011 - 1993
     tl = 2022 - 1993
@@ -224,93 +333,173 @@ def compute_budget_fields(base_dir: Path) -> BudgetFields:
     trend_offset[np.isclose(trend_offset, 0.0, atol=1e-10)] = np.nan
     trend_offset *= 10.0
 
-    rhs_anom = np.nanmean(RHSa[:, ti : tl + 1, :, :], axis=1)
-    rhs_anom *= SECONDS_PER_DAY * DAYS_PER_YEAR
+    rhs_anom_native = _compute_rhs_anomalies(rhs_native, ti, tl)
+    rhs_anom_residual = _compute_rhs_anomalies(rhs_residual, ti, tl)
 
     lat = np.linspace(20.0, 45.0, 301)
     lon = np.linspace(110.0, 140.0, 361)
 
-    return BudgetFields(lat=lat, lon=lon, trend_offset=trend_offset, rhs_anomalies=rhs_anom)
+    return BudgetFields(
+        lat=lat,
+        lon=lon,
+        trend_offset=trend_offset,
+        rhs_anomalies_native=rhs_anom_native,
+        rhs_anomalies_residual=rhs_anom_residual,
+    )
 
 
-def add_common_map_decor(ax):
+def add_common_map_decor(ax, *, left_labels: bool = True, bottom_labels: bool = True) -> None:
     if ccrs is None:
         ax.set_xlim(110, 140)
         ax.set_ylim(20, 45)
         ax.set_aspect("auto")
-        ax.set_xlabel("Longitude")
-        ax.set_ylabel("Latitude")
+        if bottom_labels:
+            ax.set_xlabel("Longitude")
+        else:
+            ax.set_xlabel("")
+        if left_labels:
+            ax.set_ylabel("Latitude")
+        else:
+            ax.set_ylabel("")
         return
 
     ax.set_extent([110, 140, 20, 45], crs=ccrs.PlateCarree())
-    ax.coastlines(resolution="110m", linewidth=0.8)
-    ax.add_feature(cfeature.LAND, facecolor="none", edgecolor="black", linewidth=0.3)
+    coastline_width = 1.0 if ccrs is not None else 1.0
+    land_edge_width = 0.6
+    ax.coastlines(resolution="50m", linewidth=coastline_width, color="black")
+    land_feature = cfeature.NaturalEarthFeature(
+        "physical",
+        "land",
+        "50m",
+        edgecolor="black",
+        facecolor="none",
+    )
+    ax.add_feature(land_feature, linewidth=land_edge_width)
     gl = ax.gridlines(draw_labels=True, linestyle="--", linewidth=0.5, color="grey")
     gl.top_labels = False
     gl.right_labels = False
+    gl.left_labels = left_labels
+    gl.bottom_labels = bottom_labels
 
 
-def plot_budget_panels(fields: BudgetFields, output: Path) -> None:
+def plot_trend_map(fields: BudgetFields, output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
 
     subplot_kwargs = {"projection": ccrs.PlateCarree()} if ccrs is not None else {}
-    fig, axes = plt.subplots(4, 2, figsize=(9, 11), subplot_kw=subplot_kwargs)
-    axes = axes.ravel()
+    fig, ax = plt.subplots(figsize=(5.5, 5.2), subplot_kw=subplot_kwargs)
+    fig.subplots_adjust(left=0.08, right=0.96, top=0.9, bottom=0.2)
 
     lon2d, lat2d = np.meshgrid(fields.lon, fields.lat)
-
     cmap = plt.get_cmap("RdBu_r")
     levels_trend = np.linspace(-1.5, 1.5, 17)
+
+    cs = ax.contourf(
+        lon2d,
+        lat2d,
+        fields.trend_offset,
+        levels=levels_trend,
+        cmap=cmap,
+        extend="both",
+        transform=ccrs.PlateCarree() if ccrs is not None else None,
+    )
+    add_common_map_decor(ax)
+    ax.set_title("Trend Offset (2011-2022 minus 1993-2022)", pad=6)
+
+    pos = ax.get_position()
+    cax = fig.add_axes([pos.x0, pos.y0 - 0.06, pos.width, 0.02])
+    trend_ticks = _select_tick_values(levels_trend, max_labels=7)
+    cbar = fig.colorbar(cs, cax=cax, orientation="horizontal", ticks=trend_ticks)
+    cbar.set_label(r"K decade$^{-1}$")
+    _set_colorbar_ticks(cbar, trend_ticks)
+
+    fig.savefig(output)
+    plt.close(fig)
+
+
+def plot_rhs_panels(fields: BudgetFields, output: Path) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+
+    subplot_kwargs = {"projection": ccrs.PlateCarree()} if ccrs is not None else {}
+
+    fig_height = 11.0
+    left, right = 0.055, 0.985
+    top, bottom = 0.97, 0.12
+    hspace = 0.12
+    wspace = 0.10
+
+    lon_span = float(fields.lon[-1] - fields.lon[0])
+    lat_span = float(fields.lat[-1] - fields.lat[0])
+    available_height = fig_height * (top - bottom)
+    axis_height = available_height / (3 + 2 * hspace)
+    axis_width = axis_height * (lon_span / lat_span)
+    available_width = axis_width * (2 + wspace)
+    fig_width = available_width / (right - left)
+    # Automatically pick the width that keeps GeoAxes aspect and balances
+    # horizontal/vertical gaps (~0.35 in each direction).
+
+    fig = plt.figure(figsize=(fig_width, fig_height))
+    gs = fig.add_gridspec(
+        3,
+        2,
+        left=left,
+        right=right,
+        top=top,
+        bottom=bottom,
+        wspace=wspace,
+        hspace=hspace,
+    )
+
+    axes_matrix = []
+    for row in range(3):
+        row_axes = []
+        for col in range(2):
+            ax = fig.add_subplot(gs[row, col], **subplot_kwargs)
+            row_axes.append(ax)
+        axes_matrix.append(row_axes)
+    axes = np.array(axes_matrix)
+
+    lon2d, lat2d = np.meshgrid(fields.lon, fields.lat)
+    cmap = plt.get_cmap("RdBu_r")
     levels_rhs = np.linspace(-10.0, 10.0, 17)
 
-    panels = [fields.trend_offset] + [fields.rhs_anomalies[i] for i in range(fields.rhs_anomalies.shape[0])]
     titles = [
-        "Trend Offset (2011-2022 minus 1993-2022)",
         "Surface Heat Flux (Qnet)",
-        "Sum of Subsurface Terms",
+        "Adv.+Ent.+Diff.",
         "Horizontal Advection",
         "Entrainment",
         "Lateral Diffusion",
         "Vertical Diffusion",
     ]
 
-    mappables = []
-    for idx, (ax, arr) in enumerate(zip(axes, panels)):
-        levels = levels_trend if idx == 0 else levels_rhs
+    axes = axes.ravel()
+    mappables: list[plt.cm.ScalarMappable] = []
+
+    for idx, (ax, arr, title) in enumerate(zip(axes, fields.rhs_anomalies, titles)):
+        row, col = divmod(idx, 2)
         cs = ax.contourf(
             lon2d,
             lat2d,
             arr,
-            levels=levels,
+            levels=levels_rhs,
             cmap=cmap,
             extend="both",
             transform=ccrs.PlateCarree() if ccrs is not None else None,
         )
-        add_common_map_decor(ax)
-        ax.set_title(titles[idx])
-        label = chr(ord("a") + idx)
-        ax.text(
-            0.02,
-            0.95,
-            f"({label})",
-            transform=ax.transAxes,
-            fontsize=12,
-            fontweight="bold",
-            bbox=dict(facecolor="white", alpha=0.7, edgecolor="black", linewidth=0.6),
-        )
+        add_common_map_decor(ax, left_labels=(col == 0), bottom_labels=(row == 2))
+        label = f"({chr(ord('a') + idx)})"
+        ax.set_title(f"{label} {title}", pad=6, loc="left")
         mappables.append(cs)
 
-    # Hide any unused slots (the last subplot in the 4x2 grid).
-    for ax in axes[len(panels) :]:
-        ax.set_visible(False)
+    positions = [ax.get_position() for ax in axes]
+    x0 = min(pos.x0 for pos in positions)
+    x1 = max(pos.x1 for pos in positions)
+    y0 = min(pos.y0 for pos in positions) - 0.05
+    cax = fig.add_axes([x0, y0, x1 - x0, 0.02])
+    rhs_ticks = _select_tick_values(levels_rhs, max_labels=9)
+    cbar = fig.colorbar(mappables[0], cax=cax, orientation="horizontal", ticks=rhs_ticks)
+    cbar.set_label(r"W m$^{-2}$")
+    _set_colorbar_ticks(cbar, rhs_ticks)
 
-    cbar1 = fig.colorbar(mappables[0], ax=axes[:1], orientation="horizontal", pad=0.08)
-    cbar1.set_label("K decade^-1")
-
-    cbar2 = fig.colorbar(mappables[1], ax=axes[1:], orientation="horizontal", pad=0.06)
-    cbar2.set_label("W m^-2")
-
-    fig.tight_layout()
     fig.savefig(output)
     plt.close(fig)
 
@@ -325,19 +514,29 @@ def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
         help="Root of the Decadal dataset (contains Figure/, output/, data/).",
     )
     parser.add_argument(
-        "--output",
+        "--trend-output",
         type=Path,
         default=None,
-        help="Destination PDF/PNG file. Defaults to Figure/budget3_python.pdf inside the base directory.",
+        help="Destination for the total trend map. Defaults to Figure/budget3_trend_python.png.",
+    )
+    parser.add_argument(
+        "--rhs-output",
+        type=Path,
+        default=None,
+        help="Destination for the RHS panel figure. Defaults to Figure/budget3_rhs_python.png.",
     )
     return parser.parse_args(argv)
 
 
 def main(argv: Iterable[str] | None = None) -> None:
     args = parse_args(argv)
-    output = args.output or (args.base_dir / "Figure" / "budget3_python.pdf")
+    figure_dir = args.base_dir / "Figure"
+    trend_output = args.trend_output or (figure_dir / "budget3_trend_python.png")
+    rhs_output = args.rhs_output or (figure_dir / "budget3_rhs_python.png")
+
     fields = compute_budget_fields(args.base_dir)
-    plot_budget_panels(fields, output)
+    plot_trend_map(fields, trend_output)
+    plot_rhs_panels(fields, rhs_output)
 
 
 if __name__ == "__main__":

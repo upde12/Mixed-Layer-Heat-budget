@@ -1,6 +1,25 @@
 {
-  "entries": [],
-  "tag_alerts": {},
+  "entries": [
+    {
+      "id": 1,
+      "timestamp": "2025-09-23T15:30",
+      "context": "RHS 패널 간격 확인",
+      "intent": "사용자는 a-b vs a-c 간격 비교를 요청",
+      "response": "그림만 보고 좌우·상하 간격이 비슷하다고 답변",
+      "issue": "시각 추정에 의존해 잘못된 판단 제공",
+      "fix": "수치 확인 절차: 코드/figure geometry 먼저 확인 후 답변",
+      "insight": "Cartopy GeoAxes는 종횡비 유지로 시각 착시 발생 → 항상 값으로 검증",
+      "tags": [
+        "communication",
+        "visual-check"
+      ]
+    }
+  ],
+  "tag_alerts": {
+    "communication": 0,
+    "visual-check": 0
+  },
   "threshold": 3,
-  "last_weekly_review": null
+  "last_weekly_review": null,
+  "next_id": 2
 }

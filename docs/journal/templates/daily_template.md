@@ -1,7 +1,7 @@
 # Daily Journal - <YYYY-MM-DD>
 
-## Yesterday Recap
-- <어제 마무리 사항 포함>
+## 최근 7일 요약
+- <주요 완료 사항 포함>
 
 ## Focus for Today
 - [ ] <주요 목표 1>
