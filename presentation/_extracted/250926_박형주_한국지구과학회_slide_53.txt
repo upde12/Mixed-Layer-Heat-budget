@@ -1,0 +1,41 @@
+Shading: SAT [℃]
+Contour: SLP [
+hPa
+]
+Interannual component: ELT Year
+Mature Phase of El Niño (ONDJ)
+Developing Phase of La Niña (MJJAS)
+Vector: UV10
+Kuroshio Anticyclone
+(Son et al., 2014)
+The
+Kuroshio and Philippine Sea Anticyclon
+e
+supplies the warm and moist southerly winds to East Asia
+Distinct pathways of the ENSO teleconnection!
+25
+Philippine Sea Anticyclone
+(Wang et al., 2000)
+143.5E
+138E
+133E
+128.75E
+127.25E
+124.5E
+Negative WSCa and Rossby wave propagation
+
+positive SSH and temperature anomaly
+Deepening of mixed layer
+
+emergence of the subsurface temperature to the 	      surface
+Ekman
+downwelling
+Temperature increase
+Shading: SSHa [cm]
+Contour : WSCa
+CI = 2 x 10
+-8
+N
+m
+-
+3

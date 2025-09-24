@@ -5,6 +5,7 @@
 - `오답노트` = `docs/error_notes/` 이하 기록물, `패턴 로그` = `data/efficiency_patterns.json`.
 - 파일·경로를 언급할 때는 항상 루트 기준 상대 경로를 사용한다.
 - 저장·출력 경로 결정 규칙은 `docs/guidelines/05_storage_output_guidelines.md`를 우선 확인한다.
+- 과학적 글쓰기·발표·토론 시에는 `docs/guidelines/06_scientific_communication.md`의 근거 제시 원칙을 따른다.
 
 ## B. 시작 루틴
 이 지침을 확인하면 아래 절차를 즉시 수행한다. 응답에서는 지침을 확인했다는 사실만 간단히 언급하고, 확인한 문서를 일일이 나열하지 않는다. 사용자가 의문문으로 질문할 때는 우선 질문 자체에 답하고, 추가 작업(예: 그림 생성)은 명령형 요청이 있을 때만 진행한다. "저장" 또는 기록 요청을 받으면 아래 절차에 따라 즉시 `python3 scripts/journal_end.py --notes "<요약>"` 형태로 실행해 내용을 기록한다.
@@ -13,10 +14,17 @@
 3. 지도/시각화 요청이 예상되면 `docs/guidelines/02_plot_guidelines.md`와 관련 오답노트를 확인했음을 명시한다.
 4. 필요한 경우 빠른 참고 자료는 `docs/cheatsheet/01_quick_checks.md`를 우선 조회한다.
 5. 필요한 데이터를 미리 준비하고, 예상 리스크를 일지 `Issues & References`에 적어둔다.
+- `python3 scripts/journal_end.py` 실행 시 `--notes` 또는 `--notes-file`로 시간대·핵심 작업·주요 경로를 포함한 요약을 기록해 Work Log에 반영한다.
+- 작업이 하나 끝날 때마다 `docs/journal/tmp/<date>_notes.md` 등에 시간·파일·핵심내용을 메모하고, 저장 직전 이 메모를 `journal_end.py --notes`에 반영한 뒤 초기화한다.
+- `python3 scripts/log_tmp_note.py "<요약>"` 명령으로 해당 메모를 즉시 추가하고, 메모가 비어 있지 않은지 답변 전 항상 확인한다. 이 스크립트는 실행 위치(또는 `--workdir`로 지정한 경로)를 자동 기록하므로, 파일·디렉토리 추적이 가능하도록 필요 시 `--workdir`를 사용해 명확히 남긴다.
+- 임시 메모는 `- HH:MM 설명 [dir: 경로1; 경로2]` 형식을 유지한다. 저장 시 `journal_end.py`가 이 기록을 시간 구간별 요약(예: `HH:MM–HH:MM | 작업 | 경로`)으로 변환해 Work Log에 반영한다.
+- 저장 지시를 받으면 `journal_end.py` 실행 전에 오늘 추가·수정한 overview/glossary 등 참고 요약 항목을 정리해 `--notes`에 포함한다.
 
 ## C. 진행 중 운영 규칙
+- 작업 중 읽거나 수정한 파일의 경로를 `[경로](경로)` 형태로 출력해 클릭 가능한 링크로 남긴다.
 - 각 명령·실험의 목적을 먼저 말하고 실행한다. 결과 요약 시 핵심 수치와 경로만 전달한다.
 - 사용자에게 전달하는 모든 최종 응답은 기본적으로 한국어로 작성한다.
+- 외부/내부 검색 구분: 사용자가 “웹에서 검색/웹 검색/인터넷에서 찾아봐”라고 지시하면 외부 웹 탐색을 수행한다. “내부 검색/레포에서 찾아봐/repo 검색”은 리포지토리 내부에서만 검색한다. 외부 탐색 결과를 사용할 때는 `06_scientific_communication.md`의 외부 소스 규칙(신뢰도 평가, 인용 형식, 보고 항목)을 따른다.
 - 진행 상황을 기록하라는 요청(예: "저장해")을 받으면 아래 순서를 따른다.
   1. 이번 대화에서 새로 드러난 비효율을 `scripts/pattern_tracker.py log`로 기록하고,
   2. 관련 이슈가 있다면 즉시 오답노트(`scripts/log_error_note.py`)를 갱신하며,

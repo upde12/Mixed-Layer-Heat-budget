@@ -1,0 +1,7 @@
+White : tendency
+Green : RHS
+White : tendency
+Green: diabatic
+Yellow: advection
+Red:    entrainment + H. & V. diffusion
+@131E, 36N

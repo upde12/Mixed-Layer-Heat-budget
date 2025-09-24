@@ -1,0 +1,40 @@
+Interannual component: ELT Year – Ocean Driven
+21
+Apr 143.5E
+May 138E
+Jun 133E
+Jul 129E
+Aug 127E
+Sep 124.5E
+Shading: SSHa [cm]
+Contour : WSCa
+CI = 2 x 10
+-8
+N
+m
+-
+3
+Shading : Ta
+Black Contour : T
+Dashed line:
+Mixed layer depth
+Gray line: 30m
+143.5E
+138E
+133E
+128.75E
+127.25E
+124.5E
+Physical relationship between SSHa and SSTa?
+Latitude
+Latitude
+Jul
+Aug
+Sep
+STCC
+NEC
+Shading:
+U
+g
+Contour:
+T

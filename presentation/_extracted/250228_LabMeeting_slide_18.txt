@@ -1,0 +1,7 @@
+Figure 5.8
+Regression coefficients of SST anomalies (shading; units in
+°
+C) and SLP anomalies (contours; contour interval is 30
+Pa) onto climate indices. Panels (a) and (b) are for the PDO, (c) and (d) for the NPGO, and (e) and (f) for the IOBM. The left column represents the first period, and the right column represents the latter period. Note that the periods used for the calculations differ.
+Spatial distribution of SST pattern related to the PDO and NPGO changed  in 2002-2022
+Connectivity with Pacific ocean re-appeared but in different ways

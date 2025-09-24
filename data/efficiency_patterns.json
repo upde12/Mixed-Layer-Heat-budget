@@ -13,13 +13,54 @@
         "communication",
         "visual-check"
       ]
+    },
+    {
+      "id": 2,
+      "timestamp": "2025-09-24T08:55",
+      "context": "발표 자료 요약 갱신",
+      "intent": "사용자 저장 요청 처리",
+      "response": "Decadal 초점 요약본 정리",
+      "issue": "새로운 비효율 없음",
+      "fix": "추가 조치 불필요",
+      "insight": "저장 절차만 진행",
+      "tags": [
+        "status"
+      ]
+    },
+    {
+      "id": 3,
+      "timestamp": "2025-09-24T16:58",
+      "context": "사용자 save 지시",
+      "intent": "진행 상황 저장",
+      "response": "패턴 로그 추가 후 journal_end 실행 예정",
+      "issue": "save 명령 대응 절차 복습 필요",
+      "fix": "pattern_tracker 기록 + journal_end 스크립트 실행",
+      "insight": "임시노트 자동화와 함께 저장 프로세스가 정비됨",
+      "tags": [
+        "save-request"
+      ]
+    },
+    {
+      "id": 4,
+      "timestamp": "2025-09-24T17:13",
+      "context": "사용자 저장 지시",
+      "intent": "일지 저장",
+      "response": "임시노트→pattern_tracker→journal_end 순서 수행",
+      "issue": "시간대별 기록 자동화 확인 필요",
+      "fix": "journal_end.py에 임시노트 요약 자동 병합 적용",
+      "insight": "저장 시 시간구간+경로 요약 자동화 완료",
+      "tags": [
+        "save-request"
+      ]
     }
   ],
   "tag_alerts": {
     "communication": 0,
-    "visual-check": 0
+    "visual-check": 0,
+    "status": 0,
+    "save-request": 0
   },
   "threshold": 3,
   "last_weekly_review": null,
-  "next_id": 2
+  "next_id": 5
 }

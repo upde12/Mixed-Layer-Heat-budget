@@ -1,0 +1,6 @@
+Then, how can we understand the temperature anomaly in the thermocline?
+If baroclinic instability is the cause, it would appear along the strong vertical shear.
+To confirm this, the vertical gradient of the zonal current is plotted.
+It is evident that areas with strong vertical shear align with the temperature anomalies indicating role of the baroclinic instability
+However, Ekman downwelling associated with negative wind stress curl anomalies can also generate positive temperature anomalies within the thermocline.
+49

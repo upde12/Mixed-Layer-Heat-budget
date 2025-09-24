@@ -1,0 +1,118 @@
+However, there are also cases that marine heat wave occurred simultaneously over the large area
+For instance, Choi et al. (2022) found that during an extreme summer case, heatwaves occurred simultaneously in the Yellow/East China Sea and East Sea
+In these cases, the large-scale atmospheric process that accompanies downward shortwave radiation and latent heat flux responsible for the MHWs.
+(click)
+The understanding of the large-scale warming is essential since it
+considerably explains
+the background conditions.
+Lee et al. (2020) examine the summer MHW based on EOF analysis.
+They revealed that the "basin-wide mode" emerged as the leading mode, explaining 38.7% of the total variance.
+(click)
+The understanding of the climate driver for the large-scale warming would be a useful before consider the regional details.
+많은
+climate driver for MHW
+에 대한 선행 연구들이 존재 한다
+.
+Ocean
+process
+가
+drive
+할 수도 있고
+,
+대기
+forcing
+이 강제할 수도 있다
+.
+나는 선행 연구에서 제시한
+driver
+들을
+regional
+특성이
+중요게
+나타난 연구와
+,
+large-scale
+forcing
+이 중요하게 나타났던 연구로 나누어 소개하고자 한다
+.
+먼저 연구
+scope
+를
+좁은
+domain
+으로
+한정하면 해역마다의 고유한 특성이 중요한 인자로 나타난다
+.
+예를 들어서
+ES
+에는
+EKWC, NKCC
+등이 존재한다
+.
+Choi et al. (2022)
+는 겨울철
+EKB
+에서 발생한
+extreme MHW
+들이
+wind stress driven-ocean current response
+에 의해
+EKWC
+가 강화되었고
+,
+그 영향으로
+EKB
+의
+SST
+가 높아져
+MHW
+가 발생했다 보인 바가 있다
+.
+한면
+동중국해는
+Kuroshio
+의
+intrusion
+이나
+Yangtz
+river discharge
+등이 발생한다
+.
+Oh et al. (2023)
+는
+clustering method
+를
+활용하여 동중국해
+mode
+를
+identify
+했고
+,
+East Asian summer monsoon
+강화와 연관된
+Yangtz
+river discharge
+의 증가가 해양 성층화를 증가시켜
+열파가
+발생한 것으로 분석 하였다
+.
+Large-scale
+로
+가면 대기의
+teleconnection
+이 중요해 진다
+.
+예를들어
+Choi et al. (2022)
+는 여름철
+extreme MHW case
+의 경우
+large-scale atmospheric circulation
+과
+연과된
+anomalous SW radiation and Latent heat flux
+에서
+driven
+된다는 것을 보인 바 있다
+.
+38

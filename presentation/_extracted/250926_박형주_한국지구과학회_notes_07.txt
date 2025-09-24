@@ -1,0 +1,3 @@
+The spectral analysis separates the interannual and decadal components, which are represented by the blue and red lines.
+I'll focus on this blue line, the interannual component
+8

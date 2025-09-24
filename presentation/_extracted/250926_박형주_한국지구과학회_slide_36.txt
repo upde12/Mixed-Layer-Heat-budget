@@ -1,0 +1,57 @@
+Summary
+During the
+reacceleration period
+(2011–2022), the area-averaged
+SST
+in the EAMS
+increased at 0.83 °C per decade
+, about three times the rate over 1982–2022.
+The
+warming
+was particularly
+pronounced in the ECS
+, the
+northwestern EJS
+, and
+south of Japan
+.
+Mixed layer heat budget analysis
+Common:
+Horizontal
+warm advection
+supported the SST-warming pattern
+across the three regions.
+ECS:
+Kuroshio intrusion
+and a
+northward current anomaly
+along the Chinese coast → warm advection; vertical-diffusion anomalies also supported warming with magnitudes comparable to advection.
+EJS:
+A
+northward alongshore current anomaly
+east of the Korean Peninsula → warm advection; the vertical-diffusion term appeared larger than advection but is interpreted cautiously due to strong budget uncertainty.
+ECS & EJS:
+WSC-forced
+changes in
+geostrophic currents
+contributed to the warm advection.
+South of Japan:
+A
+Kuroshio path
+shift from
+NLM (2012–2016)
+to
+LM (2018–2022)
+explains the reacceleration-period SST trend via associated temperature advection.
+Unlike earlier
+warming and hiatus periods
+that were often
+explained by heat input from the atmosphere
+, during
+reacceleration
+the
+ocean variability drove the SST warming
+, while the excess heat was
+released
+to the atmosphere.
+34

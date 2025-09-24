@@ -1,0 +1,52 @@
+Interannual component: ELT Year
+Mature Phase of El Niño (ONDJ)
+Kuroshio Anticyclone
+(Son et al., 2014)
+The
+WNPSH
+is
+stronger, more prolonged, and extends further west
+in the ELT year than in a normal year.
+13
+Philippine Sea Anticyclone
+(Wang et al., 2000)
+Developing Phase of La Niña (MJJAS)
+Boundary of the WNPSH (5880m)
+=
+0
+.65
+Ekman
+downwelling
+Temperature increase
+@
+100m
+The
+positive
+SLPa
+accompanies the
+negative
+WSCa
+[10
+-8
+N m
+-3
+]
+Negative
+WSCa
+
+positive SSH and temperature anomaly
+Deepening of mixed layer
+
+emergence of the temperature from
+thermocline to the surface
+The
+WNPSH
+is maintained by the combined effect of
+Indian Ocean warming
+and
+Eastern Pacific cooling
+via Kelvin and Rossby wave responses (Chen et al., 2016).
+Shading : Ta
+Contour : T
+Black Line:
+Mixed layer depth

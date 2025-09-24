@@ -1,0 +1,9 @@
+SST trend [
+]
+v anomaly [cm s
+-1
+]
+Northward current anomaly
+Warm advection anomaly
+SST trend
+Relationship with wind?

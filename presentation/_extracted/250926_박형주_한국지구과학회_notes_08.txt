@@ -1,0 +1,7 @@
+The lead-lag correlation with various climate indices are evaluated, which shows that,
+the interannual component tends to peak after eight month of the El Niño
+or seven month before La Niña.
+(click)
+This suggests that ENSO transition is related to the interannual component.
+however, the correlation coefficient of 0.3 or 4 doesn't seems that high.
+9

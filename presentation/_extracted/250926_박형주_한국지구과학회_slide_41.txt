@@ -1,0 +1,41 @@
+KAC
+: Kuroshio Anticyclone
+PSAC
+:
+Philippine Sea Anticyclone
+Interannual component: ELT Year – Heat flux driven (ONDJ)
+16
+Positive SST anomaly in
+the
+WNP Ocean and East Asian marginal seas
+Downward sensible and latent heat flux
+anomaly
+accompanied with the warm and moist air
+The
+southerly wind
+over the East Asia related to the
+anticyclonic circulations
+over the
+Kuroshio Extension
+and
+Philippine Sea
+Shading: 2m temperature [
+]
+Contour: Sensible heat flux [
+]
+Shading:
+1000hPa
+specific humidity [
+]
+Contour: latent heat flux [
+]
+Shading: Sea surface temperature [
+]
+Contour: Turbulent heat flux [
+]
+[
+hPa
+]
+Target Domain
+KAC
+PSAC

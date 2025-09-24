@@ -1,0 +1,66 @@
+Interannual component: ELT Year – Ocean Driven
+Shading: SSHa [cm]
+Contour : WSCa
+CI = 2 x 10
+-8
+N
+m
+-
+3
+20
+Source of the SSHa: propagation from the remote ocean or local forcing?
+18.5-21N
+13.0 cm/s
+-10
+-7
+N m
+-3
+~
+1.84
+cm
+month
+-1
+g’
+=
+0.026
+m
+s
+-2
+WSCa
+explains
+68% of SSHa increase
+during MJJAS!
++ Prop.
+1.5 Layer reduced gravity model
+Westward propagating
+first mode baroclinic Rossby wave
+STCC
+NEC
+STCC
+Blue: Negative
+Red : Positive
+143.5E
+138E
+133E
+128.75E
+127.25E
+124.5E
+Both westward propagating Rossby wave and negative WSC contribute to the positive SSHa
+[10
+-8
+N m
+-3
+]
+(MJJAS averaged)
+WSC
+SSH increase
+NEC: North Equatorial Current
+STCC: Subtropical Counter Current
+Shading:
+U
+g
+Contour:
+T
+RMS SSHa
+Qiu and Chen (2010)
+(Qiu et al., 2002)

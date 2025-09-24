@@ -1,0 +1,9 @@
+The Hobday et al. (2016) define those warm seawater event as "Marine Heat Wave", and provide
+hierachical
+approach to describe it.
+Once such an event is defined, we can describe its intensity or duration.
+details would be explained in the method section
+(click)
+This definition is flexible, because it does not assume any particular driver.
+which means, it can be occurred due to atmospheric forcing and oceanic conditions.
+5

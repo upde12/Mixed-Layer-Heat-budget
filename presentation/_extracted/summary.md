@@ -1,0 +1,127 @@
+# Presentation Summary
+
+## Decadal-Focused Update (KESS Talk Plan)
+- Focus: Decadal SST variability in East Asian marginal seas (1982–2022) based on abstract; exclude MHW background/cases and interannual (ELT) sections.
+- Core storyline: warming–hiatus–reacceleration, spatial patterns, spectral/indices linkage (PDO), heat-budget decomposition (Advection, Vertical Diffusion, Surface Heat Flux), large-scale drivers.
+- Slide selection (from `presentation/250926_박형주_한국지구과학회.pptx`): keep 20–27, 30–33, 35–37; review/replace placeholders 28, 29, 34.
+- Deliverables: 15–20 slides after pruning; unify labels/units; standardize legends.
+- Next actions: (1) prune slides per selection, (2) tighten titles to claim-style statements, (3) add key numbers to speaker notes, (4) ensure terms match abstract.
+
+
+## 250228_LabMeeting
+- File: `presentation/250228_LabMeeting.pptx`
+- Slides: 20
+- Keywords: period(21), warming(20), al(20), sst(19), et(19), hiatus(15), pdo(15), index(12), npgo(12), decadal(11)
+- Slide titles (first line):
+  - 01: Decadal SST Variability in the East Asian Marginal Seas over Recent Decades: Warming, Hiatus, and Reacceleration
+  - 02: Frölicher
+  - 03: Observed MHWs in recent decades
+  - 04: From previous studies (warming – hiatus period)
+  - 05: Physical mechanism:
+  - 06: Canonical relation with Pacific  (~1998)
+  - 07: From previous studies (warming – hiatus period)
+  - 08: Regime shift in 1998s
+  - 09: From previous studies (warming – hiatus period)
+  - 10: Figure 4.2
+  - 11: Q1.
+  - 12: Residuals include…
+  - 13: No spatial coherence in warming/hiatus period with advection
+  - 14: SST trend [
+  - 15: Discussion
+  - 16: Figure 5.5
+  - 17: PDO
+  - 18: Figure 5.8
+  - 19: Reacceleration
+  - 20: Conclusion
+- Notes available: 3 slides
+
+## 250814_HJPARK_Labmeeting
+- File: `presentation/250814_HJPARK_Labmeeting.pptx`
+- Slides: 19
+- Keywords: year(14), cm(10), warming(9), 2022(9), sst(8), reacceleration(8), duacs(8), advection(8), period(7), hiatus(6)
+- Slide titles (first line):
+  - 01: Decadal SST Variability in the East Asian Marginal Seas over Recent Decades:
+  - 02: Data
+  - 03: Tendency
+  - 04: As the integration period becomes longer,
+  - 05: Overall SST trend (1982–2022): positive, but weaker than in each sub‑period
+  - 06: The spectral analysis of the
+  - 07: Shading : tendency
+  - 08: White : tendency
+  - 09: monthly
+  - 10: R
+  - 11: a
+  - 12: YECS
+  - 13: Advection [
+  - 14: V. Diff
+  - 15: Advection [
+  - 16: DUACS - ADT [cm]
+  - 17: Kang and Na (2022)
+  - 18: WNP???
+  - 19: PDO
+- Notes available: 2 slides
+
+## 250926_박형주_한국지구과학회
+- File: `presentation/250926_박형주_한국지구과학회.pptx`
+- Slides: 53
+- Keywords: year(57), et(52), al(52), interannual(42), ocean(36), heat(35), anomaly(30), shading(29), flux(27), component(27)
+- Slide titles (first line):
+  - 01: Topic 2
+  - 02: Introduction
+  - 03: Oliver et al. (2021;
+  - 04: Oliver et al. (2019)
+  - 05: 90% of excess energy
+  - 06: MHW events are defined following the
+  - 07: Climatological Distribution
+  - 08: Decadal
+  - 09: Area-averaged MHW days timeseries (Interannual)
+  - 10: 9
+  - 11: Hatched: 95% significance
+  - 12: Positive SST anomaly
+  - 13: Interannual component: ELT Year
+  - 14: Interannual component: ELT Year
+  - 15: Shading: SAT [℃]
+  - 16: Downward Heat Flux
+  - 17: @ 500
+  - 18: Ding and Wang (2005)
+  - 19: Conclusion
+  - 20: Decadal SST Variability in the East Asian Marginal Seas over Recent Decades:
+  - 21: From previous studies (warming – hiatus period)
+  - 22: Physical mechanism:
+  - 23: The spectral analysis of the
+  - 24: Overall SST trend (1982–2022): positive, but weaker than in each sub‑period
+  - 25: Data
+  - 26: Tendency
+  - 27: As the integration period becomes longer,
+  - 28: R
+  - 29: a
+  - 30: YECS
+  - 31: Advection [
+  - 32: GLORYS - SSH [cm]
+  - 33: Wind Stress Curl anomaly [x10
+  - 34: WNP???
+  - 35: V. Diff
+  - 36: Summary
+  - 37: PDO
+  - 38: Extreme summer MHW cases in East Asia
+  - 39: Large-Scale MHW drivers: Basin-wide mode of Lee et al. (2020)
+  - 40: Circum-global teleconnection (
+  - 41: KAC
+  - 42: Wang et al. (2000)
+  - 43: Oct.
+  - 44: Interannual component: ELT Year – Ocean Driven
+  - 45: Interannual component: ELT Year – Ocean Driven
+  - 46: Interannual component: ELT Year – Ocean Driven
+  - 47: 47
+  - 48: Interannual component: ELT Year – Ocean Driven
+  - 49: Interannual component: ELT Year – Ocean Driven
+  - 50: Interannual component: ELT Year – Ocean Driven
+  - 51: Interannual component: ELT Year – Ocean Driven
+  - 52: Interannual component: ELT Year – Ocean Driven
+  - 53: Shading: SAT [℃]
+- Notes available: 34 slides
+
+## 초록
+- File: `presentation/초록.docx`
+- Paragraphs: 1
+  - P1: 본 연구는 1982–2022년 41년 동안 동아시아 주변해의 표층 수온의 장기 변동을 조사하고, 그 기작과 주요 태평양 기후 모드와의 연관성을 평가하였다. 분석 기간 동안 표층 수온의 장기 변동은 (1) 온난화...

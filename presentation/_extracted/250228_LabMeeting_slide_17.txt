@@ -1,0 +1,19 @@
+PDO
+NPGO
+IOBM
+EAWM
+89-95
+82-02
+92-99
+85-06
+P1 (1982
+
+2006; 25-year)
+P2 (2002
+
+2022 ; 21-year)
+P1
+P2
+Correlation between SST in WNP and its marginal seas and NPGO & PDO reversed in late 2000s (compared to the correlation prior to regime shift)
+Regressed SST and SLP
+Kim et al. (2018)

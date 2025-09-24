@@ -1,0 +1,15 @@
+Now
+i
+will introduce the data and methods used in this study.
+For sea surface temperature data, Optimum Interpolation Sea Surface Temperature (OISST) version 2 is used
+The atmospheric field is based on the ERA5
+For precipitation data, Global Precipitation Climatology Project (GPCP) is used
+and the ocean data is based on Simple Ocean Data Assimilation (SODA) 3.4.2
+The research period was set from 1982, when OISST data became available, to 2022.
+The MHW events were defined by applying the method of Hobday et al. (2016) to the OISST data.
+For an event to be defined as an MHW,
+the temperature must be higher than the 90 percentile for each calendar day.
+it should last at least five days
+and if the gaps between those events are less than two days , it will be considered as the same event
+The baseline period for calculating the anomaly and threshold was set to the entire period, data is available.
+25

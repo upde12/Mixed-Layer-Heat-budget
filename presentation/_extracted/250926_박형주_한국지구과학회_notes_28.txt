@@ -1,0 +1,53 @@
+First,
+Hovmöller
+diagram for the latitude band marked by the black box
+is presented
+.
+This diagram reveals the presence of SSH anomaly that propagating from the east.
+(Click)
+The boxed area corresponds to the region where the Subtropical Countercurrent (STCC) exists.
+The eastward current is related to the meridional temperature gradient in the upper ocean
+According to Qiu and Chen, the strong baroclinicity in the STCC could leads to the baroclinic instability, resulting in the intense eddy activity.
+In this context, westward propagating Rossby wave signal may be the source of the SSHa.
+먼저
+,
+앞서
+box
+친 위도대에서
+Hovmoller
+diagram
+을 나타내 보았습니다
+.
+동쪽에서부터 전달되는
+SSHa
+가 존재하는 것을 확인할 수 있습니다
+.
+(Click)
+Box
+친 영역은
+Subtropical counter current
+가 존재하는 해역으로
+,
+Qiu and Chen
+에 따르면
+STCC
+상층 해양의
+meridional temperature gradient
+에 의해 동으로 향하는 표층
+mean current
+가 형성되고
+,
+강한 연직 시어와 관련하여 서쪽 전파하는
+로스비파가
+발달하는 곳입니다
+.
+이러한 맥락에서
+baroclinic instability
+로 인해 발달한
+로스비파가
+SSHa
+의
+source
+일 수도 있습니다
+.
+45

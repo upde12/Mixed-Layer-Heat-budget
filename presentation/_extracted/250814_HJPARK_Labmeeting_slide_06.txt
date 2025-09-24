@@ -1,0 +1,29 @@
+The spectral analysis of the
+SST
+time series reveals a clear
+distinction
+between
+interannual
+and
+decadal
+components.
+Based on the sign of trend, warming, hiatus, and reacceleration periods are separated.
+Interannual
+Decadal
+Research
+on
+the i
+nterannual component
+was
+submitted
+(
+Park and Na
+,
+Submitted
+)
+P1: Warming (82–98)
+P2: Hiatus (98–11)
+P3: Reacceleration (11–22)
+Interannual (2-6 year)
+Decadal ( > 6 year)
+SST anomaly

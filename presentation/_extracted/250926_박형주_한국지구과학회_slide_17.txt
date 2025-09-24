@@ -1,0 +1,26 @@
+@ 500
+hPa
+The spatial distribution of
+positive MWH days
+anomaly and
+downward SW radiation
+coincides each other
+Less rainfall
+than usual, as represented by the negative anomaly of precipitation
+Embedded on a large-scale positive anomaly of the 500hPa geopotential
+The key structure of
+the vertical motion
+is
+captured in the Q-vector convergence
+
+large-scale vertical forcing
+associated with the anticyclone is responsible for
+reduced convective activity
+and
+enhanced SW radiation
+,
+triggering the MHWs
+over East Asia
+Interannual component: NT Year
+16
+Shading & Contour

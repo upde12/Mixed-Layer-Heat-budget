@@ -1,0 +1,65 @@
+However, another factor that can force the SSHa is the wind stress curl
+The increase of the SSHa seems also related with the negative WSC anomaly
+, which existed over a wide area including STCC region
+Based on a 1.5-layer reduced gravity model, the contribution of WSC is estimated.
+According to this model, 68% of the increase in SSHa from May to September in the boxed region can be explained by the WSCa.
+(click)
+Therefore, both the westward-propagating Rossby waves and the negative wind stress curl anomaly contribute to the formation of positive SSHa.
+그러나
+,
+SSHa
+를
+강제할 수 있는 다른 요인에는
+wind stress curl anomaly
+가 있습니다
+.
+box
+친 영역에
+SSHa
+가 강화되는 동안 지속적인 음의
+WSCa
+가 존재 하였습니다
+.
+이 기간동안 넓은 영역에 음의
+WSCa
+가 존재하는 것을 확인할 수 있습니다
+.
+음의
+WSC
+은
+Ekman transport
+를
+통해
+SSHa
+증가에 기여할 수 있는데요
+.
+1.5
+layer reduced gravity model
+을 이용하면 그 크기를 짐작할 수 있습니다
+.
+해당 식에 따르면
+,
+May
+부터
+September
+까지
+Box
+친 영역에서
+SSHa
+증가량의
+68%
+는
+WSCa
+로 설명할 수 있었습니다
+.
+따라서
+서쪽으로 전파되는
+로스비파와
+음의
+WSC
+모두 양의
+SSHa
+를
+형성하는데 기여한다고 할 수 있겠습니다
+.
+46

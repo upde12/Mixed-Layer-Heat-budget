@@ -1,0 +1,11 @@
+I will briefly introduce the data and methods
+I used OISSTv2 for the SST,
+ERA5 for the atmospheric field
+For GPCP for the precipitation,
+and SODA for the oceanic field
+The research period is from 1982 to 2022.
+To defined as MHWs,
+the SST must be higher than the 90 percentile for each calendar day.
+it should last at least five days
+and if the gaps between those events are two days or less, considered as a continuous event
+6

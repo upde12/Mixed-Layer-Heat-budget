@@ -1,0 +1,22 @@
+R
+2
+(ten, *)
+Dia
+Adv
+Ent
+H. Diff
+V. Diff
+RHS
+Low!!
+No seasonal cycle
+Monthly
+High
+(>90 %)
+Medium
+(70~80 %)
+Low
+(<10 %)
+Numerical scheme?
+Resolution?
+MLD seas
+Lim et al. (2012)

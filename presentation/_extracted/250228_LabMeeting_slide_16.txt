@@ -1,0 +1,11 @@
+Figure 5.5
+Time series of the detrended decadal component along with various indices. The red line represents the PDO index, the green line the NPGO index, the blue line the EAWM index, and the purple line the IOBM index.
+Detrended decadal component
+PDO
+NPGO
+IOBM
+EAWM
+6 year low-pass filtered
+Figure 5.6
+Moving window correlation between the detrended decadal component and various other time series. The moving window width is set to 15 years. The red line represents the PDO index, the green line the NPGO index, the blue line the EAWM index, and the purple line the IOBM index.
+Q2. Statistical relationship with decadal-scale climate variability?

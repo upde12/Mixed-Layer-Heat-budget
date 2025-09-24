@@ -1,0 +1,121 @@
+Now, I aim to understand the oceanic processes that led to the occurrence of the heatwave during the developing phase of La Niña.
+The SST anomaly from January to December of the ELT Year is shown by shading
+The hatched areas represent 95% significance level.
+The positive SST anomalies that appears during the El Niño mature phase gradually weakened and became insignificant by June.
+However, from July to October, significant signals reappeared, which then disappeared in November and December along with strong upward heat flux.
+To examine how the ocean process contributed to the SST anomaly during this period, we also displayed SSH anomaly.
+There is SSHa signals that propagating westward.
+As it entered the black box, the magnitude gradually intensified and accompanies the warm SST anomalies.
+that, some part of the SSHa passes through the Luzon Strait, and others enter into the East China Sea
+The SSHa still accompanies the warm SST anomaly even after entering the ECS.
+In this section, we first aim to identify the source of the SSHa.
+It can be propagated from remote ocean or could be affected by the local forcing.
+After that, the physical relationship between the SSHa and SST anomalies will be discussed
+이제
+어떤 해양 과정에 의해서
+La Niña developing phase
+에
+열파가
+발생 했는지 이해하고자 한다
+.
+ELT Year 1
+월부터
+12
+월까지
+SSTa
+를
+shading
+으로
+나타내었다
+.
+이 때
+,
+열파가
+주로  발생한 영역으로 확대하여
+나타
+내었다
+.
+hatched area
+는
+95%
+유의 수준을 넘는 것을 표현한다
+.
+El Nino mature phase
+때
+heat flux
+에 의해 형성된 양의
+SST anomaly
+는 그 크기가
+점차 줄어들어
+6
+월에는 유의하지 않게 나타났다
+.
+그러나
+7
+월부터
+10
+월까지 다시 유의한 시그널이 나타나는데
+,
+이는
+11,
+12
+월에 강한
+upward heat flux
+와 함께 사라진다
+.
+파란색으로 표현한 기간 동안
+,
+유의한
+SSTa signal
+를
+만드는데
+ocean
+이 어떻게 기여했는지 살펴보기 위하여
+SSHa
+를
+같이 표현 하였다
+.
+이때 동에서 서로 전파되는
+SSHa
+시그널이 있었는데
+,
+그것이
+black box
+에 들어올 때
+,
+점차 강해지고
+,
+SST anomaly
+도 동반하는 것으로 나타났다
+.
+그 후에
+SSHa
+의 일부는
+Luzon strait
+로 빠져나가고
+,
+일부는 동중국해로 유입 되는데
+,
+유입된 후에도
+positive SST anomaly
+를
+동반하는 것으로 나타났다
+.
+이 파트에서 저는 먼저
+SSHa
+의
+source
+를
+밝히고자 합니다
+.
+remote ocean
+에서부터 전파될 수도 있고
+,
+local forcing
+에 의해서 강화될 수도 있을 것입니다
+.
+그 후에
+SST
+와 물리적으로 어떤 상관이 있는지 토의하고자 합니다
+.
+44

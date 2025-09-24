@@ -1,0 +1,15 @@
+I started with the spatial distribution of annual marine heatwave days
+I want to introduce my target area first, as shown in the figure a, which include Yellow, East China Sea, South China Sea, East Sea, and western north pacific ocean.
+the right figure shows the area averaged annual MHW days timeseries.
+It showed two notable feature,
+the first point is the long-term increasing trend along with decadal scale fluctuation
+the annual MHW days was less than 10 days in 1980s, but it increased several times in recent decade.
+and the other point is the large year-to-year variation.
+the MHW days in 1998 is comparable with recent extreme events.
+The figure b shows the regressed MHW days and percent variance
+of
+detrended timeseries.
+the percent variance is higher than 50 percent in the WNP Ocean, SCS,  and offshore region of ECS.
+and more than 30 percent over the east coast of Korean peninsula.
+to separate these features, I conducted spectral analysis
+7

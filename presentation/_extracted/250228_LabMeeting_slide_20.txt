@@ -1,0 +1,28 @@
+Conclusion
+Q1.
+Physical mechanism responsible for the surface ocean warming during the
+reacceleration period
+?
+Rapid warming of the East Asian seas was primarily coincided with
+warm oceanic advection
+associated with a northward current anomaly differing from the previous warming period (1982–1998) when downward heat flux anomalies dominated
+Previous studies suggest that anomalies in
+wind stress and WSC
+may explain this northward current anomaly
+Q2.
+“Nonstationary”
+statistical relationship with decadal-scale climate variabilities?
+Correlations between SST in the East Asian marginal seas (EAMS) and Pacific decadal modes (
+PDO and NPGO
+) have reversed compared to earlier periods
+Previously negative correlations with PDO (and positive with NPGO) shifted to positive correlations with PDO (and negative with NPGO),
+limiting predictability based on historical patterns
+Limitations
+On decadal timescales, residuals and accumulated
+errors
+in ocean reanalysis data prevent
+closure
+of the heat budget
+Determining
+why patterns of Pacific decadal variability have changed from the past
+, and separating these changes from anthropogenic warming effects, is beyond the scope of this research and remains an ongoing challenge

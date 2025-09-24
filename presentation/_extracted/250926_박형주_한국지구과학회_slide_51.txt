@@ -1,0 +1,22 @@
+Interannual component: ELT Year – Ocean Driven
+Jun
+Heat flux driven
+Ocean driven
+Shading : Ta
+Contour : T
+Black Line:
+Mixed layer depth (MLD)
+Dashed line:
+Climatological MLD
+1. Core temperature anomaly in the thermocline (MLD < T core depth < MLD+100m)
+2. Mixed layer deepening
+3. Temperature anomaly in the subsurface emerges to the surface
+Potential condition
+for the entrainment
+JAS
+OND
+23
+SSTa
+Ta @ Mixed Layer bottom
+Core T – Mixed Layer T
+The region that satisfies all three conditions is represented as a dotted area in (b) and (e)

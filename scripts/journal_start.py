@@ -10,6 +10,7 @@ from typing import Iterable
 BASE_DIR = Path(__file__).resolve().parents[1]
 JOURNAL_DIR = BASE_DIR / 'docs' / 'journal'
 TEMPLATE_PATH = JOURNAL_DIR / 'templates' / 'daily_template.md'
+TMP_DIR = JOURNAL_DIR / 'tmp'
 RECAP_TITLE = '최근 7일 요약'
 OLD_RECAP_TITLES = ('Yesterday Recap',)
 RECAP_TITLES = (RECAP_TITLE, *OLD_RECAP_TITLES)
@@ -161,6 +162,25 @@ def summarize_next_steps(steps: list[str], limit: int = 3) -> str:
     return ' · '.join(preview) + f' 외 {remaining}건'
 
 
+def ensure_tmp_note(date: dt.date, recap_summary: str, next_steps_summary: str) -> Path:
+    """Ensure that the daily temporary note file exists with an initial entry."""
+    TMP_DIR.mkdir(parents=True, exist_ok=True)
+    path = TMP_DIR / f'{date:%Y-%m-%d}_notes.md'
+    if path.exists():
+        return path
+
+    now = dt.datetime.now().strftime('%H:%M')
+    workdir = '.'
+    header = f'# Temporary Notes – {date:%Y-%m-%d}\n\n'
+    body = [
+        '- 작업 메모를 추가하려면 `python3 scripts/log_tmp_note.py "<요약>"`를 사용하세요.\n\n',
+        f'- {now} 시작: journal_start.py 실행, 최근 7일 요약 → {recap_summary} [dir: {workdir}]\n',
+        f'- {now} 참고: 이월 작업 → {next_steps_summary} [dir: {workdir}]\n',
+    ]
+    path.write_text(header + ''.join(body) + '\n', encoding='utf-8')
+    return path
+
+
 def replace_section(text: str, title: str, lines: list[str]) -> str:
     _, start, end = extract_section(text, title)
     if start == -1:
@@ -256,6 +276,8 @@ def main(argv=None):
     next_steps_summary = summarize_next_steps(carried_steps)
     print('요약:', recap_summary)
     print('추천 다음 단계:', next_steps_summary)
+    tmp_path = ensure_tmp_note(date, recap_summary, next_steps_summary)
+    print(f'임시 메모 파일: {tmp_path.relative_to(BASE_DIR)}')
 
 
 if __name__ == '__main__':

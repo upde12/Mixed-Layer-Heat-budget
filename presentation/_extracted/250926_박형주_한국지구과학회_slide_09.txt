@@ -1,0 +1,26 @@
+Area-averaged MHW days timeseries (Interannual)
+Decadal
+MHW days
+Interannual
+Blue, orange shading:
+Niño 3.4 index
+The spectral analysis reveals a clear distinction between
+interannual
+and
+decadal
+components
+The
+interannual component
+shows
+significant correlation with
+Niño 3.4 index leading 8 months
+(
+r
+= 0.40
+, p < .05
+)
+(No significant correlation with PDO, NPGO, and AO index within a 12-month window )
+Q1. Relation between
+ENSO transitions
+and peaks of the interannual component?
+8

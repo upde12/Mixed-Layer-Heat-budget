@@ -1,0 +1,60 @@
+Now, let's move on the to NT Year.
+The temporal variations in MHW days and heat flux during NT Years are examine.
+During NT Years, positive MHW anomaly is shown only in the summer, with an increase in heatwaves during June and July followed by a decrease in August.
+the tendency of MHWs are explained by the surface heat flux.
+This indicates that atmospheric forcing contributed to the occurrence of heatwaves.
+When the components for the heat flux are examined, the shortwave radiation was most dominant.
+Unlike the ELT year, latent heat flux damps the MHWs.
+Now, I would like to show the atmospheric field during June and July, when MHW emerge rapidly.
+이제
+NT Year
+의
+MHW days
+와
+heat flux
+의 시간 변화를 살펴 보겠습니다
+.
+NT year
+동안에는 여름에만 유의한
+signal
+이 있었는데요
+,
+6
+월과
+7
+월에
+downward heat flux
+가 있을 때에는
+열파가
+증가 하다가
+,
+8
+월에는
+upward heat flux
+과 함께 감소하는 경향을 보였습니다
+.
+이는 대기 강제력이
+열파
+발생에 기여 했음을 의미 합니다
+.
+열속을
+구성하는 성분을 살펴 보았을 때에는 단파복사의 영향이 가장 중요하게 나타났습니다
+.
+ELT year
+와는 다르게
+잠열속은
+오히려
+MHWs
+를
+damping
+시키는 역할을 했습니다
+.
+이제
+열파발생에
+주요하게 기여한
+6
+월과
+7
+월의 대기장을 확인하고자 합니다
+.
+16

@@ -1,0 +1,11 @@
+Residuals include…
+Vertical mixing related to the entrainment and/or convection
+Diffusion
+or,
+As
+(or 40-year),
+Residuals from geostrophic current
+are considered as “Ekman component”
+As the integration period becomes longer, advection and heat flux will balance each other.
+Based on the monthly SODA 3.4.2 dataset  (0.5
+resolution)

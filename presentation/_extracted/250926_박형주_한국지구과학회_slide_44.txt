@@ -1,0 +1,38 @@
+Interannual component: ELT Year – Ocean Driven
+May
+Jun
+Jul
+Aug
+Sep
+19
+Heat flux
+-
+driven
+[W m
+-2
+]
+Ocean
+-
+driven
+Jan
+Feb
+Mar
+Apr
+Oct
+Nov
+Dec
+Shading: SSTa
+[
+]
+Hatched : 95% significance
+Contour : SSHa
+[cm]; CI = 2.5 cm
+Source of the positive SSHa:
+propagation from the
+remote ocean or local forcing?
+Physical relationship between SSHa and SSTa?
+JAS
+OND
+Ocean
+-
+Driven

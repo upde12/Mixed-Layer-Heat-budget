@@ -1,0 +1,33 @@
+a
+3
+- a
+Dia
+Oceanic
+Adv
+Ent
+H. Diff
+V. Diff
+During reacceleration period…
+Not reliable…
+Shading: 5m T Trend
+Contour:
+[W m
+-2
+; CI: 4W m
+-2
+]
+P1: Warming (82–98)
+P2: Hiatus (98–11)
+P3: Reacceleration (11–22)
+[
+]
+[
+]
+R
+2
+ECS
+ECS
+EJS
+WNP
+28
+Advection?

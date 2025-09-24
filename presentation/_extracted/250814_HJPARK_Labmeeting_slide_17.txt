@@ -1,0 +1,10 @@
+Kang and Na (2022)
+The northeasterly wind stress induces onshore Ekman transport, which is associated with the westward shift of the Kuroshio in the ECS
+Advection [
+/ year]
+DUACS - ADT
+[cm]
+AC
+AAC
+WSC Year-1
+a3-a

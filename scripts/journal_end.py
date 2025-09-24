@@ -5,10 +5,12 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 from pathlib import Path
+import re
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 JOURNAL_DIR = BASE_DIR / 'docs' / 'journal'
 TEMPLATE_PATH = JOURNAL_DIR / 'templates' / 'daily_template.md'
+TMP_DIR = JOURNAL_DIR / 'tmp'
 
 
 def parse_args(argv=None):
@@ -71,6 +73,48 @@ def parse_tasks(block: str):
     return tasks
 
 
+def load_tmp_entries(date: dt.date):
+    path = TMP_DIR / f'{date:%Y-%m-%d}_notes.md'
+    if not path.exists():
+        return []
+
+    pattern = re.compile(r'- (\d{2}:\d{2})\s+(.*?)(?:\s+\[dir: ([^\]]+)\])?$')
+    entries = []
+    for line in path.read_text(encoding='utf-8').splitlines():
+        match = pattern.match(line.strip())
+        if not match:
+            continue
+        time_str, text, dirs = match.groups()
+        try:
+            timestamp = dt.datetime.strptime(f'{date:%Y-%m-%d} {time_str}', '%Y-%m-%d %H:%M')
+        except ValueError:
+            continue
+        entries.append({
+            'timestamp': timestamp,
+            'text': text.strip(),
+            'dirs': dirs.strip() if dirs else '.',
+        })
+
+    entries.sort(key=lambda item: item['timestamp'])
+    return entries
+
+
+def summarize_tmp_entries(entries: list[dict]) -> list[str]:
+    if not entries:
+        return []
+
+    summary: list[str] = []
+    now = dt.datetime.now()
+    for idx, entry in enumerate(entries):
+        start = entry['timestamp']
+        end = entries[idx + 1]['timestamp'] if idx + 1 < len(entries) else now
+        if end < start:
+            end = start
+        line = f"{start:%H:%M}–{end:%H:%M} | {entry['text']} | {entry['dirs']}"
+        summary.append(line)
+    return summary
+
+
 def main(argv=None):
     args = parse_args(argv)
     date = resolved_date(args.date)
@@ -107,6 +151,10 @@ def main(argv=None):
         file_text = args.notes_file.read_text(encoding='utf-8').strip()
         if file_text:
             notes_payload.append(file_text)
+
+    tmp_summaries = summarize_tmp_entries(load_tmp_entries(date))
+    if tmp_summaries:
+        notes_payload.append('\n'.join(tmp_summaries))
 
     if notes_payload and work_block:
         lines = work_block.splitlines()

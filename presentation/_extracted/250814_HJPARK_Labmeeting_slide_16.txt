@@ -1,0 +1,42 @@
+DUACS - ADT [cm]
+AAC
+AC
+??
+AAC
+Wind Stress Curl anomaly [x10
+-8
+N m
+-3
+]
+Physical mechanism for the warm advection?
+AAC
+AC
+-10
+-7
+N m
+-3
+~
+1.84
+cm
+month
+-1
+g’
+=
+0.026
+m
+s
+-2
++ Prop.
+WSC
+SSH increase
+0.4 x -10
+-8
+N m
+-3
+for 4-year
+~3.5cm SSH increase
+Year 0 (2011-2022)
+Year -1 (2010-2021)
+Year -2 (2009-2020)
+Year -3 (2008-2019)
+Year -4 (2007-2018)

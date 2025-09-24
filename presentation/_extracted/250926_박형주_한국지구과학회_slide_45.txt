@@ -1,0 +1,29 @@
+Interannual component: ELT Year – Ocean Driven
+Shading: SSHa [cm]
+20
+1
+143.5E
+138E
+133E
+128.75E
+127.25E
+124.5E
+Source of the SSHa: propagation from the remote ocean or local forcing?
+18.5-21N
+STCC
+13.0 cm/s
+STCC
+Westward propagating
+first mode baroclinic Rossby wave
+NEC
+NEC: North Equatorial Current
+STCC:
+S
+ubtropical Counter Current
+Shading:
+U
+g
+Contour:
+T
+RMS SSHa
+Qiu and Chen (2010)

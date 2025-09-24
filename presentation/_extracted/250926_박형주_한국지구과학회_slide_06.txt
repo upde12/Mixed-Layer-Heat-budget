@@ -1,0 +1,68 @@
+MHW events are defined following the
+Hobday et al. (2016),
+Qualitative definition
+of MHW:
+Discrete
+prolonged
+anomalously
+warm water event in a
+particular
+location
+Quantitative definition
+:
+Discrete
+: gaps between events of two days or less will be considered
+as a continuous event
+Prolonged
+: persistent for at least
+five days
+Anomalously warm
+: warm temperature
+higher than 90%
+percentile for given calendar day
+Data
+period
+resolution
+variable
+OISSTv2
+1982-
+2022
+0.25
+, daily
+Sea Surface Temperature
+ERA5
+0.25
+, daily
+Atmospheric variables,
+Surface net heat flux,
+GPCP
+2.5
+, monthly
+precipitation
+SODA 3.15.2
+1982-
+2022
+0.5
+, monthly
+Ocean Variables
+Data
+period
+resolution
+variable
+OISSTv2
+1982-
+2022
+Sea Surface Temperature
+ERA5
+Atmospheric variables,
+Surface net heat flux,
+GPCP
+precipitation
+SODA 3.15.2
+1982-
+2022
+Ocean Variables
+Baseline Period : 1982-2022
+Data and Method
+(Interannual)
+5

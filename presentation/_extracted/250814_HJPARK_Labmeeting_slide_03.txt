@@ -1,0 +1,24 @@
+Tendency
+Diabatic
+Advection
+Entrainment
+Horizontal diffusion
+Vertical Diffusion
+Water type
+II (western Pacific;
+Jerlov
+1968)
+,  if
+,  if
+In Diabatic term,
+In entrainment term,
+Eddy diffusivity
+Mixed Layer Heat budget equation
+Qiu
+and
+Kelly
+(1993)
+=
+mixed
+layer
+depth

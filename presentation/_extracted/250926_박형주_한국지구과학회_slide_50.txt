@@ -1,0 +1,22 @@
+Interannual component: ELT Year – Ocean Driven
+MJJAS Averaged
+22
+Shading : Ta
+Contour : T
+Black Line:
+Mixed layer depth (MLD)
+Dashed line:
+Climatological MLD
+[10
+-8
+N m
+-3
+]
+Ekman
+downwelling
+Temperature increase
+Negative WSCa and Rossby wave propagation lead to the positive SSH and temperature anomaly
+Deepening of mixed layer contributes to the emergence of temperature anomaly from subsurface to the surface
+Month
+@
+100m

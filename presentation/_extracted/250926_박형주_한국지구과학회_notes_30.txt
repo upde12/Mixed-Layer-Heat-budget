@@ -1,0 +1,91 @@
+Now, I would like to discuss the physical relationship between SSHa and SST anomaly.
+(Click)
+To this end,
+yz
+cross-sections intersecting the SSHa core for each month is evaluated.
+The x-axis represents latitude, and the y-axis represents depth.
+In May and June, significant temperature anomalies
+is
+located within the thermocline
+for some reason.
+The black dashed line indicates the mixed layer depth, and we can see that
+the
+significant signals
+exists
+only in the upper thermocline
+.
+(Click)
+However, from July to September, as the mixed layer deepens, significant temperature anomalies are also observed within the mixed layer.
+This suggests the that the positive temperature anomaly could be entrained from the thermocline into the mixed layer, and the emerges in the SSTa.
+이제 이러한
+SSHa
+와
+SSTa
+사이의 물리적 상관성에 대하여 논의하고 싶습니다
+.
+(click)
+이를 위하여 각 달마다
+SSHa
+core
+를
+가로지르는
+yz
+cross section
+을
+나타내었습니다
+.
+x
+축은 위도를
+y
+축은
+depth
+를
+나타냅니다
+.
+5
+월과
+6
+월에 유의한 온도
+아노말리가
+thermocline
+에 존재하는 것을 확인할 수 있습니다
+.
+검정색 파선으로 표현한 것이
+Mixed layer depth
+인데
+,
+유의한
+signal
+이
+mixed layer
+내부에는 없고
+,
+upper
+thermocline
+에만 존재하는 것을 확인할 수 있습니다
+.
+(click)
+그러나
+,
+7
+월부터
+9
+월까지 더 깊어진
+Mixed layer
+와 함께 유의한 온도
+아노말리가
+Mixed layer
+내부에도 존재하는 것을 확인할 수 있습니다
+.
+이는
+entrainment
+에 의해 양의 온도
+아노말리가
+thermocline
+에서
+mixed layer
+내부로
+섭입
+되었을 가능성을 의미 합니다
+.
+48

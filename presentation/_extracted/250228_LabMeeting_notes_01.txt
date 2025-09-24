@@ -1,0 +1,14 @@
+Before we discuss the reversibility of the MHW, we need to know how they changed on the warming climate!
+The figure shows how MHW intensity and days are changed under CMIP5 RCP 8.5 scenario compared to
+the
+historical period
+,
+which means that they used a stationary threshold
+.
+We can find that the MHW tends to be more intensified and more long-lasting.
+The intensity under both RCP 4.5 and 8.5 scenarios
+exceed
+the natural variability near 2030.
+The duration exceeds the natural variability earlier.
+Under the RCP 8.5 scenario, a full-year MHW occurred in the late 21st century.
+2

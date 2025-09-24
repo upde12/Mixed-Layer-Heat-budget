@@ -1,0 +1,35 @@
+Data
+period
+resolution
+variable
+OISSTv2
+1982-2022
+0.25
+, daily
+SST
+ERA5
+0.25
+, hourly
+Atmospheric variables,
+surface heat flux
+GLORYS 12v1
+1993-2022
+1/12
+, daily
+Ocean variables
+Data
+period
+resolution
+variable
+OISSTv2
+1982-2022
+SST
+ERA5
+Atmospheric variables,
+surface heat flux
+GLORYS 12v1
+1993-2022
+Ocean variables
+Data and Method
+ERA5 surface heat flux is interpolated to the grid points of GLORYS12v1
+24
