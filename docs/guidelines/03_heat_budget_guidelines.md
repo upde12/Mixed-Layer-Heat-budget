@@ -42,3 +42,13 @@
 - 입력: `/data3/GLORYS/Daily_93_21/glorys_subset/GLO_PHY_MY_YYYY*.nc`
 - 플럭스: `/data3/GLORYS/ML_budget/data/{sw,lw,lhf,shf}_GLORYS.data`
 - 출력: `/data3/GLORYS/ML_budget/output_gpt/*.data`
+
+## H. 혼합층 구조 점검 루틴
+- GLORYS 서브셋의 위·경도 범위(20–45°N, 110–140°E 등)를 먼저 확인하고, 해안/얕은 수심에서 `mlotst`가 NaN일 수 있으므로 후보 지점을 고른 뒤 유효 값인지 확인한다.
+- 온도·염분·σ₀ 프로파일을 그릴 때 TEOS-10 라이브러리(`gsw`)를 사용해 `SA_from_SP`, `CT_from_pt`, `sigma0`로 밀도를 계산한다. 환경에 `gsw`가 설치되어 있는지 먼저 확인한다.
+- 혼합층 검증 플롯 체크리스트
+  - 동일 그림에 잠재온도(°C), 염분(psu), σ₀(kg m⁻³)를 중첩해서 그린다.
+  - `mlotst` 혼합층 깊이를 점선 등으로 표시해 표층과의 σ₀ 차이를 육안으로 비교한다.
+  - 표층 vs. 혼합층 하단(MLD 근처) σ₀ 차이를 수치로 출력해 0.2°C 등가 밀도 증가 조건과 일관성을 확인한다.
+  - 혼합층 해석이 목적이면 y축을 표층 근처(예: 0–200 m)로 제한해 세부 구조를 강조한다.
+  - 각 축/라벨 색을 해당 변수 선색과 맞춰(예: Temp=red, Salinity=blue, σ₀=green) 한눈에 구분되도록 한다.

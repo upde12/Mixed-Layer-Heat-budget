@@ -10,8 +10,14 @@ docs/journal/
   README.md
   templates/
     daily_template.md
+    weekly_template.md
+    monthly_template.md
   YYYY/
     YYYY-MM-DD.md (자동/수동 생성)
+    weekly/
+      YYYY-Www.md (주간 리뷰)
+    monthly/
+      YYYY-MM.md (월간 리뷰)
 ```
 
 ## 출근 인사("안녕?") 시 수행
@@ -26,7 +32,17 @@ docs/journal/
 3. 새로 만든 오답노트나 업데이트한 기록을 `Issues & References`에 연결합니다.
 4. 필요하다면 요약을 주간/월간 문서로 옮겨 장기 추세를 쌓습니다.
 
+## 주간 리뷰(월요일 권장)
+1. 직전 주를 대상으로 `python3 scripts/journal_weekly.py --prev` 실행.
+2. 생성물 확인: `docs/journal/<YYYY>/weekly/<YYYY-Www>.md`.
+3. `Next Week Focus`를 최대 3개로 구체화.
+
+## 월간 리뷰(말일/초일 권장)
+- 템플릿: `docs/journal/templates/monthly_template.md`를 복사해 `docs/journal/<YYYY>/monthly/<YYYY-MM>.md` 작성.
+- 프로젝트 단위 진척도(%)와 주요 산출물 경로를 반드시 포함.
+
 ## 자동화 제안
 - `scripts/journal_start.py`, `scripts/journal_end.py`를 alias로 등록해 출근/퇴근 인사와 함께 호출하면 루틴이 자동으로 수행됩니다.
+- 임시 기록은 `scripts/log_tmp_note.py "메시지" --proj EA_warming --tag viz,cartopy`처럼 프로젝트/태그를 덧붙이면 주간/월간 요약에서 자동 그룹화됩니다.
 
 > **원칙**: 하루는 반드시 "안녕?" → `Next Steps` 확인 → 작업 기록 → "퇴근할게 수고했어" → 회고 순으로 마무리합니다.

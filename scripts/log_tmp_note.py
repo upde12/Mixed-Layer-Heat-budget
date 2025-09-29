@@ -16,6 +16,8 @@ def parse_args(argv=None):
     parser.add_argument('--date', help='YYYY-MM-DD (default: today)')
     parser.add_argument('--time', help='HH:MM (default: now)')
     parser.add_argument('--workdir', help='Working directory to record (default: current directory relative to repo root)')
+    parser.add_argument('--tag', action='append', help='Add tag(s) to note; repeatable, or comma-separated')
+    parser.add_argument('--proj', help='Project name to tag this note, e.g., EA_warming')
     return parser.parse_args(argv)
 
 
@@ -52,9 +54,30 @@ def resolved_workdir(workdir: str | None) -> str:
         return str(Path.cwd())
 
 
-def append_note(path: Path, time_str: str, message: str, workdir: str) -> None:
+def normalize_tags(raw: list[str] | None) -> list[str]:
+    if not raw:
+        return []
+    items: list[str] = []
+    for r in raw:
+        items.extend([t.strip() for t in r.split(',') if t.strip()])
+    # deduplicate preserving order
+    seen = set()
+    result = []
+    for t in items:
+        if t not in seen:
+            seen.add(t)
+            result.append(t)
+    return result
+
+
+def append_note(path: Path, time_str: str, message: str, workdir: str, proj: str | None = None, tags: list[str] | None = None) -> None:
+    suffix = ''
+    if tags:
+        suffix += f' [tags: {", ".join(tags)}]'
+    if proj:
+        suffix += f' [proj: {proj}]'
     with path.open('a', encoding='utf-8') as fh:
-        fh.write(f'- {time_str} {message} [dir: {workdir}]\n')
+        fh.write(f'- {time_str} {message}{suffix} [dir: {workdir}]\n')
 
 
 def main(argv=None):
@@ -63,7 +86,8 @@ def main(argv=None):
     time_str = resolved_time(args.time)
     path = ensure_file(date)
     workdir = resolved_workdir(args.workdir)
-    append_note(path, time_str, args.message, workdir)
+    tags = normalize_tags(args.tag)
+    append_note(path, time_str, args.message, workdir, proj=args.proj, tags=tags)
     print(f'Appended note to {path.relative_to(BASE_DIR)}')
 
 

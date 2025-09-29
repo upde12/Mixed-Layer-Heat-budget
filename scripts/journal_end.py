@@ -16,6 +16,10 @@ TMP_DIR = JOURNAL_DIR / 'tmp'
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description='Wrap up daily journal at end of day')
     parser.add_argument('--date', help='YYYY-MM-DD (default: today)')
+    parser.add_argument('--since', help='Start time HH:MM or ISO datetime; default: last saved time in journal')
+    parser.add_argument('--until', help='End time HH:MM or ISO datetime; default: now')
+    parser.add_argument('--force', action='store_true', help='Bypass ~1h minimum interval guard for saving')
+    parser.add_argument('--full', action='store_true', help='Ignore last-saved checkpoint and summarize the whole day')
     parser.add_argument(
         '--notes',
         help='Free-form text to append under Work Log > Progress Notes.',
@@ -48,6 +52,39 @@ def ensure_journal(date: dt.date) -> tuple[Path, bool]:
     template = template.replace('<YYYY-MM-DD>', f'{date:%Y-%m-%d}')
     path.write_text(template, encoding='utf-8')
     return path, True
+
+
+META_RE = re.compile(r"<!--\s*journal-meta:\s*([^>]*)-->")
+
+
+def parse_meta(text: str) -> dict:
+    meta = {}
+    m = META_RE.search(text)
+    if not m:
+        return meta
+    body = m.group(1)
+    for part in body.split(','):
+        if '=' in part:
+            k, v = part.split('=', 1)
+            meta[k.strip()] = v.strip()
+    return meta
+
+
+def set_meta(text: str, **updates) -> str:
+    meta = parse_meta(text)
+    meta.update({k: v for k, v in updates.items() if v is not None})
+    body = ', '.join(f'{k}={v}' for k, v in meta.items())
+    new_line = f'<!-- journal-meta: {body} -->'
+    if META_RE.search(text):
+        return META_RE.sub(new_line, text)
+    # insert after first title line
+    lines = text.splitlines()
+    for i, ln in enumerate(lines):
+        if ln.startswith('# '):
+            lines.insert(i + 1, new_line)
+            return '\n'.join(lines)
+    # fallback: prepend
+    return new_line + '\n' + text
 
 
 def extract_section(text: str, title: str):
@@ -99,12 +136,12 @@ def load_tmp_entries(date: dt.date):
     return entries
 
 
-def summarize_tmp_entries(entries: list[dict]) -> list[str]:
+def summarize_tmp_entries(entries: list[dict], end_time: dt.datetime | None = None) -> list[str]:
     if not entries:
         return []
 
     summary: list[str] = []
-    now = dt.datetime.now()
+    now = end_time or dt.datetime.now()
     for idx, entry in enumerate(entries):
         start = entry['timestamp']
         end = entries[idx + 1]['timestamp'] if idx + 1 < len(entries) else now
@@ -121,6 +158,7 @@ def main(argv=None):
     path, created = ensure_journal(date)
 
     text = path.read_text(encoding='utf-8')
+    meta = parse_meta(text)
     focus_block, focus_start, focus_end = extract_section(text, 'Focus for Today')
     next_block, next_start, next_end = extract_section(text, 'Next Steps (for tomorrow)')
     work_block, work_start, work_end = extract_section(text, 'Work Log')
@@ -144,6 +182,47 @@ def main(argv=None):
 
     new_text = text[:next_start] + new_next + text[next_end:]
 
+    # Determine time window for summarization
+    def parse_dt(s: str | None, default: dt.datetime | None) -> dt.datetime:
+        if not s:
+            return default if default else dt.datetime.now()
+        s = s.strip()
+        # Try HH:MM for the given date
+        try:
+            return dt.datetime.strptime(f'{date:%Y-%m-%d} {s}', '%Y-%m-%d %H:%M')
+        except ValueError:
+            pass
+        # Try ISO datetime
+        try:
+            return dt.datetime.fromisoformat(s)
+        except ValueError:
+            raise SystemExit(f'Invalid time/datetime: {s}')
+
+    last_saved_iso = meta.get('last_saved')
+    last_saved_dt = None
+    if last_saved_iso and not args.full and not args.since:
+        try:
+            last_saved_dt = dt.datetime.fromisoformat(last_saved_iso)
+        except ValueError:
+            last_saved_dt = None
+
+    until_dt = parse_dt(args.until, dt.datetime.now())
+    since_dt = parse_dt(args.since, last_saved_dt) if (args.since or last_saved_dt) else None
+
+    # Load and filter tmp entries for the window
+    entries = load_tmp_entries(date)
+    if since_dt:
+        entries = [e for e in entries if e['timestamp'] > since_dt]
+    if entries and until_dt:
+        entries = [e for e in entries if e['timestamp'] <= until_dt]
+
+    # Enforce ~1h minimum interval unless overridden
+    if since_dt and not args.force:
+        delta_min = int((until_dt - since_dt).total_seconds() // 60)
+        if delta_min < 50:
+            print(f'Skip: interval {delta_min} min < ~60 min; use --force to override.')
+            entries = []
+
     notes_payload = []
     if args.notes:
         notes_payload.append(args.notes.strip())
@@ -152,7 +231,7 @@ def main(argv=None):
         if file_text:
             notes_payload.append(file_text)
 
-    tmp_summaries = summarize_tmp_entries(load_tmp_entries(date))
+    tmp_summaries = summarize_tmp_entries(entries, end_time=until_dt)
     if tmp_summaries:
         notes_payload.append('\n'.join(tmp_summaries))
 
@@ -182,6 +261,10 @@ def main(argv=None):
                 lines = lines[:insert_idx] + additions + lines[insert_idx:]
                 new_work_block = '\n'.join(lines)
                 new_text = new_text[:work_start] + new_work_block + new_text[work_end:]
+
+    # Update last_saved checkpoint only if we added new tmp summaries
+    if tmp_summaries:
+        new_text = set_meta(new_text, last_saved=until_dt.isoformat(timespec='minutes'))
 
     if new_text != text:
         path.write_text(new_text, encoding='utf-8')

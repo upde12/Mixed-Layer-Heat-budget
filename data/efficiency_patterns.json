@@ -52,15 +52,50 @@
       "tags": [
         "save-request"
       ]
+    },
+    {
+      "id": 5,
+      "timestamp": "2025-09-25T08:50",
+      "context": "사용자 저장 지시",
+      "intent": "일지 저장",
+      "response": "임시노트 요약→pattern log→journal_end",
+      "issue": "저장 프로세스 반복 확인",
+      "fix": "journal_end 자동 요약",
+      "insight": "트리거 기반 임시노트 기록과 연계",
+      "tags": [
+        "save-request"
+      ]
+    },
+    {
+      "id": 6,
+      "timestamp": "2025-09-29T09:02",
+      "context": "PPT 최종본 점검 및 새 파일 비교",
+      "intent": "핵심 그림 유지·단위/라벨 일관화",
+      "response": "자동 검사로 단위·라벨·약어·특수문자 이슈 탐지",
+      "issue": "℃ dec−1, R2 라벨, 화살표 문자(), 첫 등장 약어 미해설 등 품질 불일치",
+      "fix": "단위 °C/decade 통일, R²(Ṫm,RHS) 표기, ‘→’ 또는 도형 화살표, YECS/EJS/WNP 첫 등장시 풀네임 병기",
+      "insight": "발표 전 pptx 자동 린트 스크립트와 QC 체크리스트 필요",
+      "tags": [
+        "slides",
+        "unit-consistency",
+        "label-consistency",
+        "acronym",
+        "qc"
+      ]
     }
   ],
   "tag_alerts": {
     "communication": 0,
     "visual-check": 0,
     "status": 0,
-    "save-request": 0
+    "save-request": 1,
+    "slides": 0,
+    "unit-consistency": 0,
+    "label-consistency": 0,
+    "acronym": 0,
+    "qc": 0
   },
   "threshold": 3,
   "last_weekly_review": null,
-  "next_id": 5
+  "next_id": 7
 }
