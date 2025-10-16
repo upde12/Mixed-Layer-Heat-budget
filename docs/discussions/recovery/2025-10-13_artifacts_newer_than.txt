@@ -1,0 +1,8 @@
+docs/discussions/transcripts/2025-10-13_session_paste.tmp.txt
+docs/discussions/transcripts/2025-10-13_session_tail_unsaved.txt
+docs/discussions/recovery/2025-10-13_artifacts_gitstatus.txt
+docs/discussions/recovery/RECOVERY_template.md
+docs/guidelines/01_llm_guidelines.md
+docs/guidelines/11_context_overflow_emergency_recovery.md
+scripts/source_panel_mlhb_composite.py
+scripts/recover_context_overflow.py

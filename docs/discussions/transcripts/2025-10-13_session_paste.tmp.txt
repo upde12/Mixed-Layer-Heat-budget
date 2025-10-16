@@ -1,0 +1,4 @@
+[Paste stub] Stream disconnected; user said "저장해".
+Action: Saved paste stub and ran recovery; awaiting actual paste to capture unsaved tail.
+Change: Updated contour overlay colors in llm-ops/scripts/source_panel_mlhb_composite.py to heating/cooling scheme (pos=#b2182b solid, neg=#2166ac dashed, zero black), thicker lines.
+Run: Re-render with --rhs-prc 90 and overlay-source soda-net for visibility once ready.

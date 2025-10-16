@@ -1,44 +1,127 @@
 # 3) 일일 운영 및 LLM 지침
+<!-- owner: MLHB-core; canonical: true; depends_on: docs/guidelines/05_storage_output_guidelines.md, docs/guidelines/06_scientific_communication.md; last_review: 2025-09-29 -->
 
 ## A. 공통 용어와 참조
-- `루트` = `~/Desktop/GPT/Mixed-Layer-Heat-budget`, `리포` = `upde12/Mixed-Layer-Heat-Budget`.
+- `루트` = `~/Desktop/GPT/llm-ops`, `리포` = `upde12/Mixed-Layer-Heat-Budget`.
 - `오답노트` = `docs/error_notes/` 이하 기록물, `패턴 로그` = `data/efficiency_patterns.json`.
 - 파일·경로를 언급할 때는 항상 루트 기준 상대 경로를 사용한다.
-- 저장·출력 경로 결정 규칙은 `docs/guidelines/05_storage_output_guidelines.md`를 우선 확인한다.
+- 저장·출력 경로 결정 규칙은 `docs/guidelines/05_storage_output_guidelines.md`를 우선 확인한다(특히 E. NetCDF/CF 출력 규칙).
 - 과학적 글쓰기·발표·토론 시에는 `docs/guidelines/06_scientific_communication.md`의 근거 제시 원칙을 따른다.
+- 참고문헌 보관·요약·개요 정리는 `docs/guidelines/07_reference_management.md`를 따른다.
 
 ## B. 시작 루틴
-이 지침을 확인하면 아래 절차를 즉시 수행한다. 응답에서는 지침을 확인했다는 사실만 간단히 언급하고, 확인한 문서를 일일이 나열하지 않는다. 사용자가 의문문으로 질문할 때는 우선 질문 자체에 답하고, 추가 작업(예: 그림 생성)은 명령형 요청이 있을 때만 진행한다. "저장" 또는 기록 요청을 받으면 아래 절차에 따라 즉시 `python3 scripts/journal_end.py --notes "<요약>"` 형태로 실행해 내용을 기록한다.
+
+### B‑0. 핵심 모드(Core Mode; 기본)
+- 기본값: 사용자가 "지침 확인"만 요청한 경우, 본 문서(01)만 확인한다. 다른 지침(02/05/06/09 등)은 자동으로 열람하지 않는다.
+- 확장 조건(둘 중 하나일 때만 추가 열람):
+  1) 명시 스코프/한정자 제공 — 예) `scope=plot|report|exec|storage|ref`, `GuidesOnly: 02,05`.
+  2) 명시 작업 지시 — 예) "그림/지도/플롯 그려"(→ 02,05), "보고서/브리프 작성"(→ 06,09), "실행/배치"(→ 03), "저장/CF/NetCDF"(→ 05), "참고문헌/인용"(→ 07).
+- 스코프 매핑(권장): `plot→[02,05]`, `report→[06,09]`, `exec→[03]`, `storage→[05]`, `ref→[07]`.
+- 요약 분량 제한: `size=N` 제공 시 체크리스트/요약을 N줄 내로 제한한다(기본 7줄). 필수 안전 항목이 초과할 경우 N+"추가 있음"으로 알린 뒤 확인 받아 확장한다.
+- 실행 억제: `no-run`이 명시되면 본 절의 자동 실행(스크립트 호출 등) 없이 확인 사실과 핵심만 보고한다. 실제 작업 지시가 있을 때 해당 스크립트를 실행한다.
+- 모호할 때: 스코프가 불분명하면 한 문장으로 확인 질문을 한 뒤, 답변 전까지는 Core Mode만 적용한다.
+- 컨텍스트 초과로 대화가 끊길 경우 즉시 `docs/guidelines/11_context_overflow_emergency_recovery.md`를 따른다.
+
+본 절은 B‑0(Core Mode)를 전제로 하며, 확장·자동 실행은 B‑0의 조건을 충족할 때에만 수행한다. 이 지침을 확인하면 아래 절차를 즉시 수행한다. 응답에서는 지침을 확인했다는 사실만 간단히 언급하고, 확인한 문서를 일일이 나열하지 않는다. 사용자가 의문문으로 질문할 때는 우선 질문 자체에 답하고, 추가 작업(예: 그림 생성)은 명령형 요청이 있을 때만 진행한다. "저장" 또는 기록 요청을 받으면 아래 절차에 따라 즉시 `python3 scripts/journal_end.py --notes "<요약>"` 형태로 실행해 내용을 기록한다.
 1. 지침 확인 직후 `python3 scripts/journal_start.py`를 실행해 전날 `Next Steps`와 최근 7일 완료 항목을 불러오고, 스크립트가 출력한 요약/추천 사항을 간단히 정리해 공유한다.
 2. 오늘 작업과 맞닿는 키워드로 `python3 scripts/search_error_notes.py <키워드>`를 실행하고 참고할 내용이 있으면 요약해 공유한다.
-3. 지도/시각화 요청이 예상되면 `docs/guidelines/02_plot_guidelines.md`와 관련 오답노트를 확인했음을 명시한다.
+3. 지도/시각화 요청이 있거나 `scope=plot`/`GuidesOnly: 02`가 명시되면 `docs/guidelines/02_plot_guidelines.md`와 관련 오답노트를 확인했음을 명시한다.
 4. 필요한 경우 빠른 참고 자료는 `docs/cheatsheet/01_quick_checks.md`를 우선 조회한다.
 5. 필요한 데이터를 미리 준비하고, 예상 리스크를 일지 `Issues & References`에 적어둔다.
 - `python3 scripts/journal_end.py` 실행 시 `--notes` 또는 `--notes-file`로 시간대·핵심 작업·주요 경로를 포함한 요약을 기록해 Work Log에 반영한다.
 - 작업이 하나 끝날 때마다 `docs/journal/tmp/<date>_notes.md` 등에 시간·파일·핵심내용을 메모하고, 저장 직전 이 메모를 `journal_end.py --notes`에 반영한 뒤 초기화한다.
 - `python3 scripts/log_tmp_note.py "<요약>"` 명령으로 해당 메모를 즉시 추가하고, 메모가 비어 있지 않은지 답변 전 항상 확인한다. 이 스크립트는 실행 위치(또는 `--workdir`로 지정한 경로)를 자동 기록하므로, 파일·디렉토리 추적이 가능하도록 필요 시 `--workdir`를 사용해 명확히 남긴다. 트리거 단어(`좋아`, `아니`) 사용 시에는 메모 본문에 트리거 단어를 직접 적지 말고, 당시 작업 맥락만 기록한다.
 - 임시 메모는 `- HH:MM 설명 [dir: 경로1; 경로2]` 형식을 유지한다. 저장 시 `journal_end.py`가 이 기록을 시간 구간별 요약(예: `HH:MM–HH:MM | 작업 | 경로`)으로 변환해 Work Log에 반영한다.
-- 저장 지시를 받으면 `journal_end.py` 실행 전에 오늘 추가·수정한 overview/glossary 등 참고 요약 항목을 정리해 `--notes`에 포함한다.
+- 저장 지시를 받으면 `journal_end.py` 실행 전에 오늘 추가·수정한 overview/요약본 등 참고 항목을 정리해 `--notes`에 포함한다(자세한 규칙은 07 참고).
+
+## C. 출고 전 QA 체크(08)
+- 답변/보고를 제출하기 전, `docs/guidelines/08_answer_quality_check.md`의 60초 체크리스트를 적용한다.
+- 핵심 3점(최소): 1) 내부 근거(파일/코드/수치) 2) 모호 표현 없음 3) 단위·링크 검증.
+- 필요 시 자동 점검 도구 사용: `python3 scripts/audit_answers.py --in <file>` 또는 표준입력 사용.
+
+## D. 경로 별칭과 전환 공지
+- 2025-09-30부터 레포 루트 별칭은 `LLM_OPS`를 사용한다. 과거 별칭 `MLHB`는 계속 호환된다.
+  - 예시(임시 메모/일지 라벨): `[dir: LLM_OPS/scripts] [LLM_OPS/scripts](LLM_OPS/scripts)`
+  - 과거 라벨(`[MLHB/…]`)은 스크립트가 자동으로 `LLM_OPS` 기준 경로로 해석한다.
+- 레포 루트 경로명 변경: `~/Desktop/GPT/Mixed-Layer-Heat-budget` → `~/Desktop/GPT/llm-ops`.
+  - 문서·답변에서는 항상 레포-상대경로 또는 별칭(`LLM_OPS/...`)을 사용한다.
+  - 절대경로(`/Users/...`)는 기록·링크에 사용하지 않는다(이식성 저하).
+
+## E. 시간 기록 규칙(강화)
+- 결정·옵스 변경·실험 시작/종료 등 회고 가치가 있는 이벤트는 반드시 시간 스탬프를 남긴다.
+  - 사용: `python3 scripts/log_tmp_note.py "결정: MLHB 분모 하한 옵션(\`--hmin\`) 제거" --tag decision`
+  - 위치: `docs/journal/tmp/<date>_notes.md`에 `- HH:MM ... [dir: LLM_OPS/<상대경로>]` 형식으로 자동 기록됨.
+- 일지 본문에 수동으로 추가할 때도 시간 정보가 드러나야 한다.
+  - Work Log > Progress Notes: `HH:MM–HH:MM | 내용 | [LLM_OPS/path](상대링크)` 형식 권장.
+  - Issues & References: 결정 요약 시 해당 임시 메모(시각)의 링크를 함께 남긴다.
+- 저장 시점 요약: `journal_end.py`는 임시 메모의 시각을 구간 요약(`HH:MM–HH:MM`)으로 변환해 Work Log에 삽입한다. 수동 입력만 있는 경우에도 동일 형식을 맞춘다.
+- QA 체크: 시간(또는 임시 메모 링크) 누락 시 보완 후 저장한다.
+
+예시
+```
+$ python3 scripts/log_tmp_note.py "결정: MLHB \`--hmin\` 옵션 완전 제거" --tag decision --proj MLHB
+```
+
+이후 `python3 scripts/journal_end.py --notes "결정 요약 반영"`으로 일지에 자동 반영한다.
+
+## 경량 실행 모드(시간 예산)
+지침 확인으로 인한 지연을 줄이기 위해, 기본 동작은 “경량 모드”로 한다. 질문에 필요한 최소 범위의 지침만 조건부로 조회한다.
+
+- 기본(경량 모드)
+  - 불필요한 문서 일괄 확인을 생략한다. 필요한 경우에만 관련 지침을 연다.
+  - 지침 확인 시간 예산: 최대 10초 또는 1–2개 파일 내 핵심 섹션만 확인.
+  - 광범위 검토가 필요하면 먼저 의도를 확인한다(“자세히 볼까요?” 등).
+
+- 문서 선택·확장: 트리거·스코프 매핑은 본문 B‑0(Core Mode)의 규칙을 단일 정본으로 따른다.
+
+- 시작 루틴과의 관계
+  - B-3(시각화 지침 확인)는 “시각화 트리거”가 있을 때만 수행한다.
+  - 과학 커뮤니케이션 지침(06)은 사용자가 과학적 토의/발표/인용을 요청한 경우에만 확인한다.
+  - 기타 지침도 해당 트리거가 있을 때만 열람·인용한다.
+
+- 실행 예
+  - 코드/개념 단답 질의: 경량 모드 유지, 문서 열람 생략 또는 1개 파일 제한
+  - 그림 요청: 02 지침 + 관련 오답노트만 확인 후 진행
+  - 슬라이드/논증 요청: 06 지침만 확인 후 근거 규칙 적용
+
+위 원칙은 답변의 신속성을 우선하고, 필요 시에만 깊이 있는 지침을 참조하도록 하기 위한 것이다. 트리거 감지는 사용자 요청의 키워드와 현재 작업 맥락(최근 명령/파일 경로)을 함께 고려한다.
 
 ## C. 진행 중 운영 규칙
 - 파일 경로 표기 규칙(클릭 가능 링크)
   - 채팅/CLI 응답: 경로를 백틱으로 감싸 `path` 또는 `path:line` 형태로 쓴다. 예) `docs/journal/2025/2025-09-29.md:2`
-  - 문서/마크다운: `[경로](경로)` 형태로 쓴다. 예) `[docs/journal/2025/2025-09-29.md](docs/journal/2025/2025-09-29.md)`
+  - 문서/마크다운: `[텍스트] (타깃)` 형태로 쓴다. 예) `[docs/journal/2025/2025-09-29.md] (../journal/2025/2025-09-29.md)`
+  - 임시 메모 형식: 예) `[dir: LLM_OPS/scripts] [LLM_OPS/scripts](LLM_OPS/scripts)` — 첫 번째 대괄호 블록은 파서용, 두 번째는 클릭용 링크다.
 - 각 명령·실험의 목적을 먼저 말하고 실행한다. 결과 요약 시 핵심 수치와 경로만 전달한다.
-- 사용자에게 전달하는 모든 최종 응답은 기본적으로 한국어로 작성한다.
+- 언어 규칙(강화):
+  - 사용자가 한국어로 말하면 반드시 한국어로 답한다. 별도 지시가 없으면 대화는 계속 한국어를 유지한다.
+  - 사용자가 영어(또는 타 언어)로 요청하면 그 언어로 답하되, 이후 사용자가 한국어로 돌아오면 즉시 한국어로 복귀한다.
+  - 코드/경로/명령/식별자 등은 원문 표기를 그대로 유지하고, 서술·해설은 한국어로 작성한다.
+  - 외부 인용문·에러 로그는 원문을 보존하고, 해설·요약은 한국어로 제공한다.
+  - 규칙을 위반해 비한국어 응답을 보냈다면 즉시 간단히 사과하고, 동일 내용의 한국어 요약을 이어서 제공한다. 또한 `python3 scripts/log_tmp_note.py "언어 규칙 위반: 영어 응답 → 한국어로 교정" --tag guidelines`로 메모를 남긴다.
+  - 발표/슬라이드 맥락의 언어 규칙은 `docs/guidelines/06_scientific_communication.md`의 G절을 따른다.
 - 사용자가 대화 중 "좋아" 또는 "아니"라고 말하면, 직전 작업 맥락을 요약해 `python3 scripts/log_tmp_note.py "Trigger <단어>: <맥락>" --workdir <경로>`를 즉시 실행해 트리거 로그를 남긴다. 실행 후에는 메모가 성공적으로 추가됐는지 확인하고, 누락을 인지한 경우 즉시 보완 기록을 남긴다.
 - 외부/내부 검색 구분: 사용자가 “웹에서 검색/웹 검색/인터넷에서 찾아봐”라고 지시하면 외부 웹 탐색을 수행한다. “내부 검색/레포에서 찾아봐/repo 검색”은 리포지토리 내부에서만 검색한다. 외부 탐색 결과를 사용할 때는 `06_scientific_communication.md`의 외부 소스 규칙(신뢰도 평가, 인용 형식, 보고 항목)을 따른다.
+ - 링크 제공(검증) 규칙: 외부 웹 주소를 제공하기 전에 반드시 다음을 확인한다.
+   1) HTTP 상태가 200 OK인지, 2) 기대한 콘텐츠 유형(PDF/HTML)과 제목·키워드가 의도와 일치하는지.  
+   - 403/404/리다이렉트만 보이는 주소나 세션/로그인 필요 링크는 그대로 제공하지 않는다. 대신 “접근 필요(기관/로그인)”를 명시하고, 사용자가 열 수 있는 최상위 랜딩/DOI만 안내한다.  
+   - 링크가 불안정하거나 만료 위험이 있을 때는 경로만 설명하고(예: 저널 랜딩에서 PDF 버튼), 저장소에는 로컬 사본 경로를 병기한다(`references/...`).
 - 진행 상황을 기록하라는 요청(예: "저장해")을 받으면 아래 순서를 따른다.
   1. 이번 대화에서 새로 드러난 비효율을 `scripts/pattern_tracker.py log`로 기록하고,
   2. 관련 이슈가 있다면 즉시 오답노트(`scripts/log_error_note.py`)를 갱신하며,
   3. 마지막으로 `python3 scripts/journal_end.py --notes "<요약>"`를 실행해 일지에 반영하며, 추가로 해당 노트에 이번 작업에서 다룬 주요 디렉터리·파일 경로를 명시한다.
 - 오답노트 참고·갱신 이력은 일지 `Issues & References` 섹션에 기록한다.
 - 사용자가 "대화 내용을 모두 저장해" 등 전체 기록 저장을 지시하면, 현재 채팅 세션을 즉시 `docs/discussions/` 이하에 있는 포맷(예: `transcripts/2025-09-23_session_raw.txt`) 그대로 정리해 추가한다.
+- 긴 대화나 핵심 의사결정이 예상되면 초반에 `python3 scripts/create_transcript_stub.py --note "<맥락>"`로 템플릿을 생성해 두고, 세션 종료 전에 반드시 대화 전문을 붙여 넣어 `docs/discussions/transcripts/`에 남긴다. 여러 번 생성할 경우 `--suffix`로 구분하고, 저장 후 일지 `Issues & References`에 해당 경로를 적는다.
 - 오답노트를 새로 작성할 때는 관련 대화 기록 경로(`docs/discussions/...`)를 `--related` 항목에 포함해 추적 가능하도록 한다.
 - 에러가 발생하면 메시지·스택트레이스를 모두 기록하고, 같은 메시지로 오답노트를 재검색한 뒤 원인 규명 → 수정 방안을 순차적으로 제안·수행한다.
 - 사용자가 결과에 불만족할 때는 피드백을 정리하고 수정 방향을 합의한 뒤 재시도하며, 변경 사항과 효과를 요약해 보고한다. 이때 `docs/error_notes/<카테고리>/`에 `note_template.md`를 기반으로 조치 기록을 남기고, 반복 원인으로 판단되면 `python3 scripts/pattern_tracker.py log --tags user-feedback --note "<핵심요약>"`을 실행해 `data/efficiency_patterns.json`을 갱신한다.
-- 지도·시각화 요청 시 `docs/guidelines/02_plot_guidelines.md`를, 열수지 분석 요청 시 `docs/guidelines/03_heat_budget_guidelines.md`를 읽고 필요한 내용을 공유한다.
+- 지도·시각화 요청 시 `docs/guidelines/02_plot_guidelines.md`를, 분석 방법 지침은 `docs/guidelines/10_analysis_methods/README.md`에서 해당 방법(예: 혼합층 열수지)을 찾아 참고한다.
 - 외부 지침(예: 코드 리뷰 모드 요청, 테스트 정책)이 주어지면 해당 모드에서 기대되는 산출물과 제한을 먼저 확인하고 나서 작업한다.
+
+### 메시지 전 송신 체크리스트(간단)
+- [ ] 한국어로 작성했는가(사용자가 명시적으로 다른 언어를 요청하지 않았는가)?
+- [ ] 경로/명령/코드는 백틱으로 감싸 클릭 가능하게 했는가?
+- [ ] 불필요한 장황함 없이 바로 실행 가능한 다음 단계를 제시했는가?
 
 ## D. 종료 루틴
 1. 하루를 마무리하거나 지금까지의 진행 상황을 저장할 때 `python3 scripts/journal_end.py`를 실행해 `Focus for Today` 미완료 항목을 `Next Steps`로 정리한다.

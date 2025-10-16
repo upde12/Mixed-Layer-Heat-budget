@@ -4,10 +4,14 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 TMP_DIR = BASE_DIR / 'docs' / 'journal' / 'tmp'
+# Human-friendly alias for the repository root path
+ROOT_ALIAS = 'LLM_OPS'
+COMPAT_ALIASES = ('MLHB',)
 
 
 def parse_args(argv=None):
@@ -49,7 +53,11 @@ def resolved_workdir(workdir: str | None) -> str:
         return workdir
     try:
         rel = Path.cwd().relative_to(BASE_DIR)
-        return '.' if str(rel) == '.' else rel.as_posix()
+        # Always present paths relative to repo root with a concise alias
+        if str(rel) == '.':
+            script_rel = Path(__file__).resolve().relative_to(BASE_DIR).parent.as_posix()
+            return f"{ROOT_ALIAS}/{script_rel}"
+        return f"{ROOT_ALIAS}/{rel.as_posix()}"
     except ValueError:
         return str(Path.cwd())
 
@@ -70,14 +78,42 @@ def normalize_tags(raw: list[str] | None) -> list[str]:
     return result
 
 
+def _resolve_link_target(note_file: Path, workdir_label: str) -> str:
+    """Return a clickable link target for Markdown based on workdir label.
+    - If label starts with 'MLHB/', resolve relative to repo root.
+    - If label == 'MLHB', target is repo root.
+    - Else, if absolute path, return as-is; otherwise keep label.
+    """
+    base = BASE_DIR
+    aliases = (ROOT_ALIAS, *COMPAT_ALIASES)
+    if workdir_label in aliases:
+        target = base
+    elif any(workdir_label.startswith(f"{a}/") for a in aliases):
+        for a in aliases:
+            prefix = f"{a}/"
+            if workdir_label.startswith(prefix):
+                target = base / workdir_label[len(prefix):]
+                break
+    else:
+        p = Path(workdir_label)
+        return workdir_label if p.is_absolute() else workdir_label
+    try:
+        rel = os.path.relpath(str(target), start=str(note_file.parent))
+        return Path(rel).as_posix()
+    except Exception:
+        return str(target)
+
+
 def append_note(path: Path, time_str: str, message: str, workdir: str, proj: str | None = None, tags: list[str] | None = None) -> None:
     suffix = ''
     if tags:
         suffix += f' [tags: {", ".join(tags)}]'
     if proj:
         suffix += f' [proj: {proj}]'
+    link = _resolve_link_target(path, workdir)
     with path.open('a', encoding='utf-8') as fh:
-        fh.write(f'- {time_str} {message}{suffix} [dir: {workdir}]\n')
+        # Record directory in a machine-parseable form and add a clickable Markdown link.
+        fh.write(f'- {time_str} {message}{suffix} [dir: {workdir}] [{workdir}]({link})\n')
 
 
 def main(argv=None):
@@ -88,7 +124,8 @@ def main(argv=None):
     workdir = resolved_workdir(args.workdir)
     tags = normalize_tags(args.tag)
     append_note(path, time_str, args.message, workdir, proj=args.proj, tags=tags)
-    print(f'Appended note to {path.relative_to(BASE_DIR)}')
+    rel = path.relative_to(BASE_DIR).as_posix()
+    print(f'Appended note to {ROOT_ALIAS}/{rel}')
 
 
 if __name__ == '__main__':

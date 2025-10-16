@@ -1,0 +1,126 @@
+ M .DS_Store
+ M README.md
+ M data/efficiency_patterns.json
+ M docs/.DS_Store
+ M docs/cheatsheet/01_quick_checks.md
+ M docs/data/01_glorys_nc_metadata.md
+ M docs/guidelines/01_llm_guidelines.md
+ M docs/guidelines/02_plot_guidelines.md
+ D docs/guidelines/03_heat_budget_guidelines.md
+ M docs/guidelines/05_storage_output_guidelines.md
+ M docs/guidelines/06_scientific_communication.md
+ M docs/history/01_evolution.md
+ M docs/journal/.DS_Store
+ M docs/journal/2025/2025-09-29.md
+ M docs/journal/templates/daily_template.md
+ M docs/journal/tmp/2025-09-24_notes.md
+ M docs/journal/tmp/2025-09-25_notes.md
+ M docs/journal/tmp/2025-09-29_notes.md
+ M docs/visualization/mld_profiles.md
+ D docs/workflow/01_code_and_runs.md
+ M figures/mld_profile_ecs_GLO_PHY_MY_19930101_19930101.png
+ D figures/mld_profile_wnp_GLO_PHY_MY_19930101_19930101.png
+ M figures/mld_profile_wnp_GLO_PHY_MY_19930101_19930101_upper200m.png
+ D metss_1993_monthly_panel.png
+ D metss_1993_monthly_panel_land.png
+ D metss_time0.png
+ M references/.DS_Store
+ M references/MLHB/README.md
+ M scripts/journal_end.py
+ M scripts/journal_start.py
+ M scripts/journal_weekly.py
+ M scripts/log_tmp_note.py
+ M scripts/plot_mld_profile.py
+ M src/process_d2nf.py
+?? Mixed-Layer-Heat-budget.code-workspace
+?? docs/diagnostics/
+?? docs/discussions/.DS_Store
+?? docs/discussions/recovery/
+?? docs/discussions/transcripts/2025-10-13_session_paste.tmp.txt
+?? docs/discussions/transcripts/2025-10-13_session_raw.txt
+?? docs/discussions/transcripts/2025-10-13_session_tail_unsaved.txt
+?? docs/error_notes/data_io/
+?? docs/error_notes/environment/20250929_1627_note.md
+?? docs/error_notes/remote_ops/20250929_1627_doi-403404.md
+?? docs/error_notes/visualization/20250929_1627_glorys-mlotst-mld.md
+?? docs/error_notes/visualization/20251001_deltaT_equiv_sign_in_profile.md
+?? docs/guidelines/.DS_Store
+?? docs/guidelines/03_code_execution.md
+?? docs/guidelines/07_guideline_optimization.md
+?? docs/guidelines/07_reference_management.md
+?? docs/guidelines/08_answer_quality_check.md
+?? docs/guidelines/09_reporting_guidelines.md
+?? docs/guidelines/10_analysis_methods/
+?? docs/guidelines/11_context_overflow_emergency_recovery.md
+?? docs/guidelines/CHANGELOG.md
+?? docs/guidelines/_archive/
+?? docs/guidelines/reports/
+?? docs/history/2025-10-01_mlhb_ops_progress.md
+?? docs/history/2025-10-02_mlhb_ops_summary.md
+?? docs/journal/2025/2025-09-30.md
+?? docs/journal/2025/2025-10-01.md
+?? docs/journal/2025/2025-10-02.md
+?? docs/journal/2025/2025-10-10.md
+?? docs/journal/2025/2025-10-13.md
+?? docs/journal/tmp/2025-09-30_notes.md
+?? docs/journal/tmp/2025-10-01_notes.md
+?? docs/journal/tmp/2025-10-02_notes.md
+?? docs/journal/tmp/2025-10-10_notes.md
+?? docs/journal/tmp/2025-10-13_notes.md
+?? docs/reports/
+?? docs/visualization/mld_random_samples.json
+?? figures/.DS_Store
+?? figures/mld_random_samples/
+?? logs/
+?? references/GLORYS/
+?? references/MLHB/Dong_Gille_Sprintall_2007_JCLI_SouthernOcean_MLHB.pdf
+?? references/MLHB/Elzahaby_etal_2022_Frontiers_MLD_MLHB_Diagnostics.pdf
+?? references/MLHB/Foltz_Schmid_Lumpkin_2013_JCLI_NETA_MLHB.pdf
+?? references/MLHB/Hummels_etal_2014_ClimDyn_AtlanticColdTongue_MLHB.pdf
+?? references/MLHB/Large_McWilliams_Doney_1994_KPP_review.pdf
+?? references/MLHB/Monterey_Levitus_1997_NOAA_Atlas14.pdf
+?? references/MLHB/Price_Weller_Pinkel_1986_JGR_DiurnalCycling.pdf
+?? references/MLHB/Price_Weller_Pinkel_1986_PWP_summary_HYCOM.pdf
+?? references/MLHB/_extracted/
+?? references/MLHB/dbm_links.txt
+?? references/MLHB/deBoyerMontegut_etal_2004_JGR_MLD.pdf
+?? references/MLHB/ml_ddg.html
+?? references/MLHB/overview_MLD.md
+?? scripts/aggregate_monthly_with_flags.py
+?? scripts/audit_answers.py
+?? scripts/build_mlhb_monthly_from_soda.py
+?? scripts/compare_elt_sets.py
+?? scripts/compare_mhw_days_ondj_vs_ond.py
+?? scripts/compute_adv_diagnostics.py
+?? scripts/compute_corr_ten_total.py
+?? scripts/compute_mld_fallback_stats.py
+?? scripts/create_transcript_stub.py
+?? scripts/diagnose_mlp_definition.py
+?? scripts/normalize_journal_links.py
+?? scripts/pick_closure_points.py
+?? scripts/pick_ent_points.py
+?? scripts/pick_profile_points_multi.py
+?? scripts/plot_inverse_fraction_year.py
+?? scripts/plot_mhw_days_monthly_composite.py
+?? scripts/plot_mhw_days_seasonal_composite.py
+?? scripts/plot_mld_fallback_daily_maps.py
+?? scripts/plot_mld_profile_recomputed.py
+?? scripts/plot_mld_profile_soda.py
+?? scripts/plot_mlhb_terms_daily.py
+?? scripts/plot_mlhb_terms_daily_policy_compare.py
+?? scripts/plot_mlhb_terms_monthly.py
+?? scripts/plot_mlhb_terms_monthly_policy_compare.py
+?? scripts/plot_sst_monthly_composite.py
+?? scripts/recover_context_overflow.py
+?? scripts/run_adv_schemes.py
+?? scripts/run_mlhb_monthly.py
+?? scripts/run_mlhb_monthly_batch.py
+?? scripts/run_mlhb_monthly_dual.py
+?? scripts/run_mlhb_monthly_main.py
+?? scripts/source_panel_mlhb.py
+?? scripts/source_panel_mlhb_composite.py
+?? scripts/source_panel_mlhb_seasonal.py
+?? scripts/source_panel_mlhb_year.py
+?? scripts/validate_links.py
+?? src/process_d2nf_main.py
+?? tmp_output/

@@ -1,0 +1,6 @@
+[INFO] year 1993  (Ah=100.0, Kv=0.0001, denom=h, we_mode=deepening, adv=flux, cap=None m/day, mld=recompute)
+[1993] day 1/30 saved
+[1993] day 10/30 saved
+[1993] day 20/30 saved
+[1993] day 30/30 saved
+[OK] 1993 done → /Volumes/HJPARK4/Decadal/source/ML_budget/output/daily_mld10ref/1993/01/ml_budget_1993.nc

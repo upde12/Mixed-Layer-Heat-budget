@@ -9,6 +9,9 @@ import argparse
 import datetime as dt
 import re
 from collections import defaultdict
+import subprocess
+import sys
+import json
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
@@ -306,6 +309,28 @@ def build_weekly(args) -> tuple[str, Path]:
     out_dir = JOURNAL_DIR / f'{year}' / 'weekly'
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f'{year}-W{w:02d}.md'
+
+    # Link validation summary (weekly routine)
+    try:
+        cmd = [sys.executable or 'python3', str(BASE_DIR / 'scripts' / 'validate_links.py'), '--json', '--root', 'docs']
+        proc = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        data = json.loads(proc.stdout)
+        broken = int(data.get('broken_count', 0))
+        affected = int(data.get('files_affected', 0))
+        samples = data.get('broken', [])[:5]
+        if broken == 0:
+            link_block = '## Link Check\n- 결과: OK (깨진 링크 없음)\n\n'
+        else:
+            items = []
+            for it in samples:
+                items.append(f"  - {it['file']}:{it['line']} → {it['target']}")
+            extra = '' if broken <= len(samples) else f"\n  - 외 {broken - len(samples)}건"
+            link_block = '## Link Check\n' + f'- 깨진 링크: {broken}개 (파일 {affected}개)\n' + ('\n'.join(items) + extra) + '\n\n'
+        # Insert before Metrics section
+        content = content.replace('\n## Metrics & Time', f"\n{link_block}## Metrics & Time", 1)
+    except Exception:
+        # If validation fails for any reason, proceed without blocking
+        pass
 
     return content, out_path
 

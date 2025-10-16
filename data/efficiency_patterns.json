@@ -82,6 +82,126 @@
         "acronym",
         "qc"
       ]
+    },
+    {
+      "id": 7,
+      "timestamp": "2025-09-29T16:27",
+      "context": "임시메모 링크가 클릭되지 않음",
+      "intent": "임시 저장 기록을 클릭해 관련 폴더 열기",
+      "response": "링크 텍스트만 있고 타겟이 별칭 경로",
+      "issue": "상대경로 변환 누락으로 클릭 실패",
+      "fix": "스크립트에서 메모 파일 기준 상대경로로 변환",
+      "insight": "사람이 보는 표기와 기계 파서를 분리(표시=별칭, 타겟=상대경로)",
+      "tags": [
+        "link-format",
+        "notes-workflow"
+      ]
+    },
+    {
+      "id": 8,
+      "timestamp": "2025-09-29T16:27",
+      "context": "문서-코드 we-mode 정의 불일치",
+      "intent": "문서와 코드 일치화",
+      "response": "문서에서 deepening-only 기본으로 서술",
+      "issue": "코드 기본 dhdt와 불일치",
+      "fix": "문서에 모드별 공식 명시·코드 기본값 반영",
+      "insight": "문서에는 '권장'과 '기본'을 분리해 기술",
+      "tags": [
+        "guidelines-mismatch",
+        "we-mode"
+      ]
+    },
+    {
+      "id": 9,
+      "timestamp": "2025-09-29T16:27",
+      "context": "DOI/저널 링크 접근 실패",
+      "intent": "참고문헌 PDF/랜딩 접근",
+      "response": "403/404 혹은 리디렉션",
+      "issue": "세션·쿠키·봇 차단",
+      "fix": "DOI/랜딩만 안내, 브라우저/기관 로그인 사용",
+      "insight": "외부 링크 제공 전 HTTP 200/콘텐츠 검증 규칙 필요",
+      "tags": [
+        "doi-session",
+        "external-link"
+      ]
+    },
+    {
+      "id": 10,
+      "timestamp": "2025-09-30T09:36",
+      "context": "월별 MLHB NetCDF 덮어쓰기",
+      "intent": "일일 결과를 월평균 파일에 누적",
+      "response": "`to_netcdf(append_dim)`을 시도했으나 지원되지 않아 매번 t=1만 남김",
+      "issue": "append_dim 미지원 버전에서 concat 없이 덮어써 시간축이 초기화",
+      "fix": "기존 NetCDF와 새 월 평균을 concat 후 `.tmp`에 저장 → `os.replace`로 교체",
+      "insight": "시간 축 누적 파이프라인은 concat + 원자적 rename 패턴을 공통 함수로 묶어 재사용",
+      "tags": [
+        "netcdf",
+        "aggregation",
+        "mlhb"
+      ]
+    },
+    {
+      "id": 11,
+      "timestamp": "2025-10-01T09:32",
+      "context": "MLHB 분모 하한 옵션 점검",
+      "intent": "혼합층 열수지 파이프라인을 최신 운영 결정과 일치시키기",
+      "response": "코드·스크립트·문서가 여전히 `--hmin` 하한을 기본 옵션으로 안내",
+      "issue": "안정화 단계에서 도입했던 하한이 제거 결정 이후에도 남아 혼선 및 재사용 위험",
+      "fix": "`--hmin` CLI/분모 클램프 제거, 문서/프리셋/QA 규칙에서 하한 언급 삭제",
+      "insight": "안정화 옵션 폐기 시 인터페이스·문서·QA를 동시에 갱신하고, NaN 감시로 품질을 관리",
+      "tags": [
+        "mlhb",
+        "configuration",
+        "guidelines"
+      ]
+    },
+    {
+      "id": 12,
+      "timestamp": "2025-10-01T10:22",
+      "context": "GrADS에서 월평균 NetCDF 시간축 읽기 실패",
+      "intent": "월별 산출을 GrADS로 열어 품질 확인",
+      "response": "sdfopen에서 time 축 첫 값 읽기 실패(Index exceeds dimension bound)",
+      "issue": "time 좌표 CF 속성 누락 및 scratch 파일 접근으로 HDF 오류 가능",
+      "fix": "월평균 작성 시 time.units/calendar/dtype/FillValue 명시, skipna=True 적용, scratch 파일 대신 output/monthly/*.nc만 열기",
+      "insight": "집계 산출의 좌표축은 항상 CF 규격으로 작성하고, `.tmp→rename`된 최종 산출만 열도록 워크플로를 고정",
+      "tags": [
+        "grads",
+        "netcdf",
+        "cf",
+        "mlhb"
+      ]
+    },
+    {
+      "id": 13,
+      "timestamp": "2025-10-01T11:45",
+      "context": "월평균 NetCDF 저장 중 xarray 시간축 인코딩 충돌",
+      "intent": "월평균 파일을 CF 규격으로 기록",
+      "response": "time.attrs.units와 encoding.units를 모두 지정해 ValueError 발생",
+      "issue": "CF 메타를 attrs와 encoding 양쪽에 설정해 인코더가 충돌",
+      "fix": "attrs에서 units/calendar 제거, encoding으로만 지정; skipna=True 유지",
+      "insight": "좌표축 메타는 encoding 우선, attrs는 설명 필드로 제한",
+      "tags": [
+        "xarray",
+        "cf",
+        "netcdf",
+        "mlhb"
+      ]
+    },
+    {
+      "id": 14,
+      "timestamp": "2025-10-10T11:13",
+      "context": "MLHB decadal panels (cartopy fallback→layout issues)",
+      "intent": "Report-quality maps with clear labels/borders",
+      "response": "Labels overlapped; lon/lat clipped; colorbar overlapped with ticks when cartopy missing",
+      "issue": "Map layout degrades without cartopy (no coastlines/grid/formatting); colorbar and labels overlap",
+      "fix": "Install cartopy stack; add 5° grid + ° formatters; set_extent; enlarge bottom margin; add 'nice' scale snap; default caption off",
+      "insight": "Codify flexible-but-strong map layout guidance; use fallback only for dev previews.",
+      "tags": [
+        "plot-layout",
+        "cartopy-required",
+        "colorbar-scale",
+        "label-overlap"
+      ]
     }
   ],
   "tag_alerts": {
@@ -93,9 +213,24 @@
     "unit-consistency": 0,
     "label-consistency": 0,
     "acronym": 0,
-    "qc": 0
+    "qc": 0,
+    "link-format": 0,
+    "notes-workflow": 0,
+    "guidelines-mismatch": 0,
+    "we-mode": 0,
+    "doi-session": 0,
+    "external-link": 0,
+    "netcdf": 0,
+    "aggregation": 0,
+    "mlhb": 0,
+    "configuration": 0,
+    "guidelines": 0,
+    "plot-layout": 0,
+    "cartopy-required": 0,
+    "colorbar-scale": 0,
+    "label-overlap": 0
   },
   "threshold": 3,
   "last_weekly_review": null,
-  "next_id": 7
+  "next_id": 15
 }

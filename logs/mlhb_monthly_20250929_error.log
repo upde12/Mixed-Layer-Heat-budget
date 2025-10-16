@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py", line 204, in <module>
+    main()
+  File "/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py", line 183, in main
+    check_disk_free(agg_path.parent, args.min_free_gb)
+  File "/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py", line 59, in check_disk_free
+    raise RuntimeError(
+RuntimeError: Available space 29.9 GB is below threshold 90.0 GB

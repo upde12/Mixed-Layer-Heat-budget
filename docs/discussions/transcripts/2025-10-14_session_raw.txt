@@ -1,0 +1,5 @@
+Transcript: 2025-10-14 session (raw)
+
+(Created 2025-10-14 14:32; session marker ~14:32. Paste conversation below using 'User:'/'Assistant:' format.)
+
+MHW days recompute (WNP, baseline 1987–2017), CF/GrADS encoding fix, full-period output written; plan: validate vs Hobday2016 code and run domain sensitivity (WNP A/B/C).

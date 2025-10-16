@@ -1,0 +1,58 @@
+===== 1993-01 =====
+[RUN] .venv/bin/python src/process_d2nf.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/01 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 1993:1993 --workers auto --start-date 1993-01-01 --end-date 1993-01-31 --ah 100.0 --kv 0.0001 --hmin 15.0 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[INFO] year 1993  (Ah=100.0, Kv=0.0001, denom=h, hmin=15.0, we_mode=deepening, cap=None m/day, mld=recompute)
+[1993] day 1/30 saved
+[1993] day 10/30 saved
+[1993] day 20/30 saved
+[1993] day 30/30 saved
+[OK] 1993 done → /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/01/ml_budget_1993.nc
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+[DONE] 1993-01 appended to /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_we_deepening.nc
+===== 1993-02 =====
+[RUN] .venv/bin/python src/process_d2nf.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/02 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 1993:1993 --workers auto --start-date 1993-02-01 --end-date 1993-02-28 --ah 100.0 --kv 0.0001 --hmin 15.0 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[INFO] year 1993  (Ah=100.0, Kv=0.0001, denom=h, hmin=15.0, we_mode=deepening, cap=None m/day, mld=recompute)
+[1993] day 1/27 saved
+[1993] day 10/27 saved
+[1993] day 20/27 saved
+[OK] 1993 done → /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/02/ml_budget_1993.nc
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+[DONE] 1993-02 appended to /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_we_deepening.nc
+===== 1993-03 =====
+[RUN] .venv/bin/python src/process_d2nf.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/03 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 1993:1993 --workers auto --start-date 1993-03-01 --end-date 1993-03-31 --ah 100.0 --kv 0.0001 --hmin 15.0 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[INFO] year 1993  (Ah=100.0, Kv=0.0001, denom=h, hmin=15.0, we_mode=deepening, cap=None m/day, mld=recompute)
+[1993] day 1/30 saved
+[1993] day 10/30 saved
+[1993] day 20/30 saved
+[1993] day 30/30 saved
+[OK] 1993 done → /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/03/ml_budget_1993.nc
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+[DONE] 1993-03 appended to /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_we_deepening.nc
+===== 1993-04 =====
+[RUN] .venv/bin/python src/process_d2nf.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/04 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 1993:1993 --workers auto --start-date 1993-04-01 --end-date 1993-04-30 --ah 100.0 --kv 0.0001 --hmin 15.0 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[INFO] year 1993  (Ah=100.0, Kv=0.0001, denom=h, hmin=15.0, we_mode=deepening, cap=None m/day, mld=recompute)
+[1993] day 1/29 saved
+[1993] day 10/29 saved
+[1993] day 20/29 saved
+[OK] 1993 done → /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily_we_deepening/1993/04/ml_budget_1993.nc
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/Mixed-Layer-Heat-budget/scripts/run_mlhb_monthly.py:120: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+[DONE] 1993-04 appended to /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_we_deepening.nc

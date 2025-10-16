@@ -27,3 +27,12 @@ Place source PDFs here. Status (downloaded vs needed) and sources:
   - (보류) 본 매뉴얼의 핵심 절차에는 필수 아님. 필요 시 향후 보강.
 
 If a document cannot be retrieved automatically or requires login, please obtain via institutional access and place the PDF here.
+
+## Extracted summaries
+- Folder: `references/MLHB/_extracted/`
+  - `Price1986_JGR_DiurnalCycling_MLHB.md` — PWP/엔트레인먼트 관점 요약(MLHB 연결)
+  - `Large1994_RG_KPP_Mixing_MLHB.md` — KPP 수직혼합이 MLHB의 DIFFV/엔트레인먼트 해석에 주는 시사점
+  - `deBoyerMontegut2004_JGR_MLD_Definition.md` — Δσ₀ 임계값 기반 MLD 정의(MLHB 입력 변수로의 연결)
+
+## Topic overviews
+- MLD overview: `references/MLHB/overview_MLD.md`

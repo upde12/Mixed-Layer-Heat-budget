@@ -1,0 +1,49 @@
+Session: 2025-10-13 — SODA 월 MLHB U/V 결측(25°N 이남) 디버깅
+
+참여: 운영 에이전트(Codex), 사용자
+
+[10:20] 증상 보고
+ - 현상: 남부(25°N↓)에서 ADV/ENT가 NaN. T는 정상, U/V가 NaN임.
+ - 목표: 마스킹 원인 규명 및 제거.
+
+[10:25] H1 — U/V 평균의 NaN 전파 가설
+ - 조치: 두께가중 평균을 NaN‑견고화(유효 레벨만 가중합/유효두께로 나눔, 부분층 NaN×0 방지).
+ - 결과: 결측 감소는 제한적(다수 남아 격자 불일치 의심).
+
+[10:50] H2 — yu/xu 미서브셋(격자 불일치) 가설
+ - 조치: `yt/xt`뿐 아니라 `yu/xu`도 동일 범위로 서브셋, tracer 크기에 맞춰 정렬.
+ - 결과(1993‑01, 25°N↓): T정상 중 U/V 결측 685→25.
+
+[11:10] H3 — 연안 전구간 U/V 결측 가설
+ - 확인: 0→h 유효 U 두께=0인 열 25개(잔여와 일치).
+ - 조치: 폴백 옵션 도입 `--uv-fill-mode`(nearest/zero); zero 채택 시 결측 25→0.
+
+[11:30] 최종 실행
+ - 1993년 12개월 전부 재생성(생산 경로), `uv-fill-mode=zero`, 디버그 마스크 저장.
+
+요약
+ - 원인: (1) yu/xu 미서브셋으로 인한 격자 불일치, (2) U/V 평균 시 NaN 전파, (3) 연안 전구간 결측 열.
+ - 해결: yu/xu 동시 서브셋·정렬 + NaN‑견고 평균 + 연안 열 폴백(0).
+
+[14:40] SODA T_ML 그리드(월×연) 렌더
+ - 산출: /Volumes/HJPARK4/Decadal/Figure/elt_composite_SODA/elt_TML_grid_rows-months.png
+ - 설정: unit=month, rhs_prc=98, overlay=soda-net (시범)
+
+[14:50] 3개월 집계(연×5윈도, p90) 렌더 & 스크립트 보관
+ - 산출: /Volumes/HJPARK4/Decadal/Figure/elt_TML_6x5_grid_3mo_sodanetheating_p90_SODA/elt_TML_grid_rows-years.png
+ - 보관: scripts/source_panel_mlhb_composite__YYYYMMDD-HHMM.py (그림 폴더 하위)
+
+[14:58] 1983 prevOND 공백 해결
+ - 조치: 1982 월 산출 생성(10–12 포함) → 1983 prevOND 정상 표시
+
+[15:20] 모든 ELT prevOND 채움
+ - 조치: 이전 해 월 산출 일괄 생성(1987/1997/2009/2015/2019)
+
+[15:43] 최종 렌더 확인
+ - 행=연도, 윈도=prevOND/JFM/AMJ/JAS/OND, p90, overlay=soda-net → 정상
+
+[15:50] 문서·코드 갱신
+ - 오답노트 추가: docs/error_notes/data_io/20251013_soda_prevOND_missing.md
+ - 지침(02) 체크리스트 11항 추가: “그림 저장 시 스크립트 사본 보관”
+ - ELT 연도 기준 문서화: docs/reports/references/elt_years.md
+ - 합성 스크립트 오버레이 스타일 개선: 색(주황/초록), 두께/투명도/레벨 옵션화

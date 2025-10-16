@@ -1,0 +1,74 @@
+[RUN] /Users/hjpark/Desktop/GPT/llm-ops/../.venv/bin/python /Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py --start 2016-05 --end 2016-05 --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --out /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_main_201605.nc --temp-root /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily --python /Users/hjpark/Desktop/GPT/llm-ops/../.venv/bin/python --workers auto --ah 100.0 --kv 0.0001 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0 --min-free-gb 90.0 --keep-daily
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+/Users/hjpark/Desktop/GPT/llm-ops/src/process_d2nf_main.py:705: RuntimeWarning: All-NaN slice encountered
+  maxdiff = np.nanmax(diff0, axis=0)
+[2016] day 1/30 saved
+[2016] day 10/30 saved
+[2016] day 20/30 saved
+[2016] day 30/30 saved
+/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py:117: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py:117: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py:117: UserWarning: Converting non-nanosecond precision datetime values to nanosecond precision. This behavior can eventually be relaxed in xarray, as it is an artifact from pandas which is now beginning to support non-nanosecond precision values. This warning is caused by passing non-nanosecond np.datetime64 or np.timedelta64 values to the DataArray or Variable constructor; it can be silenced by converting the values to nanosecond precision ahead of time.
+  month_mean = month_mean.expand_dims(time=[time_val]).assign_coords(time=("time", [time_val]))
+===== 2016-05 =====
+[RUN] /Users/hjpark/Desktop/GPT/llm-ops/../.venv/bin/python src/process_d2nf_main.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily/2016/05 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 2016:2016 --start-date 2016-05-01 --end-date 2016-05-31 --workers auto --ah 100.0 --kv 0.0001 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[DONE] 2016-05 appended to /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_main_201605.nc

@@ -1,0 +1,82 @@
+[
+  {
+    "file": "GLO_PHY_MY_19931216_19931216.nc",
+    "lat": 30.75,
+    "lon": 135.8333282470703,
+    "mld": 90.02960726618767,
+    "max_depth_used": 290.02960726618767,
+    "output": "figures/mld_random_samples/mld_profile_30.75_135.83_GLO_PHY_MY_19931216_19931216.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19931025_19931025.nc",
+    "lat": 21.91666603088379,
+    "lon": 133.4166717529297,
+    "mld": 51.728876039385796,
+    "max_depth_used": 251.7288760393858,
+    "output": "figures/mld_random_samples/mld_profile_21.92_133.42_GLO_PHY_MY_19931025_19931025.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19930621_19930621.nc",
+    "lat": 21.08333396911621,
+    "lon": 117.16666412353516,
+    "mld": 11.59703415632248,
+    "max_depth_used": 211.59703415632248,
+    "output": "figures/mld_random_samples/mld_profile_21.08_117.17_GLO_PHY_MY_19930621_19930621.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19931015_19931015.nc",
+    "lat": 38.66666793823242,
+    "lon": 134.4166717529297,
+    "mld": 24.719993859529495,
+    "max_depth_used": 224.7199938595295,
+    "output": "figures/mld_random_samples/mld_profile_38.67_134.42_GLO_PHY_MY_19931015_19931015.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19930314_19930314.nc",
+    "lat": 21.25,
+    "lon": 118.0,
+    "mld": 11.59703415632248,
+    "max_depth_used": 211.59703415632248,
+    "output": "figures/mld_random_samples/mld_profile_21.25_118.00_GLO_PHY_MY_19930314_19930314.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19931210_19931210.nc",
+    "lat": 36.25,
+    "lon": 135.3333282470703,
+    "mld": 81.94220186769962,
+    "max_depth_used": 281.9422018676996,
+    "output": "figures/mld_random_samples/mld_profile_36.25_135.33_GLO_PHY_MY_19931210_19931210.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19931019_19931019.nc",
+    "lat": 31.66666603088379,
+    "lon": 137.8333282470703,
+    "mld": 46.38813662528992,
+    "max_depth_used": 246.38813662528992,
+    "output": "figures/mld_random_samples/mld_profile_31.67_137.83_GLO_PHY_MY_19931019_19931019.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19931112_19931112.nc",
+    "lat": 30.0,
+    "lon": 133.5,
+    "mld": 42.573322758078575,
+    "max_depth_used": 242.57332275807858,
+    "output": "figures/mld_random_samples/mld_profile_30.00_133.50_GLO_PHY_MY_19931112_19931112.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19930228_19930228.nc",
+    "lat": 20.33333396911621,
+    "lon": 121.16666412353516,
+    "mld": 18.31110656261444,
+    "max_depth_used": 218.31110656261444,
+    "output": "figures/mld_random_samples/mld_profile_20.33_121.17_GLO_PHY_MY_19930228_19930228.png"
+  },
+  {
+    "file": "GLO_PHY_MY_19930321_19930321.nc",
+    "lat": 21.5,
+    "lon": 121.33333587646484,
+    "mld": 29.45036305487156,
+    "max_depth_used": 229.45036305487156,
+    "output": "figures/mld_random_samples/mld_profile_21.50_121.33_GLO_PHY_MY_19930321_19930321.png"
+  }
+]

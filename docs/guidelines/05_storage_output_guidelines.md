@@ -1,4 +1,5 @@
 # 5) 저장 및 출력 지침
+<!-- owner: MLHB-core; canonical: true; depends_on: ; last_review: 2025-09-29 -->
 
 ## A. 적용 범위
 - 외장 저장 장치(예: `/Volumes/*`)에서 분석·시각화 작업을 수행할 때 적용한다.
@@ -25,3 +26,39 @@
 - [ ] 코드가 루트 `src/` 구조에 맞춰 분류·저장되어 있다.
 - [ ] 출력 경로 기본값이 외장 경로를 가리키는지 검토했다.
 - [ ] 변경 사항을 관련 문서/일지에 반영했다.
+
+## E. NetCDF/CF 출력 규칙
+- time 좌표(CF)
+  - `units = "days since 1970-01-01 00:00:00"`, `calendar = "standard"`, `long_name = "time"`.
+  - dtype는 float64(`f8`), `_FillValue=None`로 지정, 차원은 `unlimited`.  
+  - 주의: `attrs.units`/`attrs.calendar`와 `encoding.units`/`encoding.calendar`를 동시에 지정하지 않는다(인코딩 충돌). CF 메타는 encoding으로만 지정.
+- lat/lon 좌표
+  - `long_name`/`standard_name`/`units` 일관: latitude(`degrees_north`), longitude(`degrees_east`).
+  - 1D 또는 2D(curvilinear) 모두 허용하되, 데이터 변수와 차원/형상이 일치해야 한다.
+- 변수 단위와 인코딩
+  - 계산은 K s⁻¹, 파일 저장은 K day⁻¹(추가 ×86400 불필요).  
+  - `data_vars`: `zlib=True`, `complevel=4` 권장. 좌표 변수는 비압축.  
+  - time 인코딩 예: `{dtype: f8, _FillValue: None, units: "days since 1970-01-01 00:00:00"}`.
+- 전역 속성(메타)
+  - `we_mode`, `adv_scheme`, `mld_source`, `mld_threshold_dsigma0`, `mld_ref_depth_m`, `created`(ISO8601), `fully_mixed_fraction` 등 핵심 파라미터 기록.
+- NaN/집계 규칙
+  - 분모≤0/결측은 NaN 유지(강제 대치 금지).  
+  - 월/기간 평균 집계 시 `skipna=True`로 NaN 전파 최소화(모두 NaN인 경우만 NaN 유지).
+
+## F. 원자적 저장·집계 규칙
+- 파일 쓰기: 최종 파일명에 직접 쓰지 말고 `*.tmp`로 저장 후 `os.replace`(rename)로 교체한다.  
+- scratch 접근: 작업 중간 산출(tmp/ scratch)은 열람하지 말고, 최종 산출(output/*.nc)만 사용한다.  
+- 호환 점검: `ncdump -h`로 CF 속성 확인 후 필요 시 GrADS `sdfopen`으로 시범 오픈 테스트를 수행한다.
+
+참고: 시각화(플롯·지도) 관련 스타일·검증·저장 옵션은 `docs/guidelines/02_plot_guidelines.md`를 따른다.
+
+## G. 실행 검증·회복(출력 관점)
+- 실행 직후 로그 검사: `tail -n 80 logs/<run>.log`에서 에러 패턴을 확인한다.
+- 월평균 산출 검증: `/output/monthly/*.nc`에 대해 `ncdump -h`로 `time` 차원/CF 속성(time:units/calendar)과 변수 단위를 점검한다.
+- 부분 작성 파일 금지: scratch(tmp_daily) 또는 `.tmp` 파일은 열지 않는다. 최종 파일만 사용한다.
+- 오류 시 회복 절차(권장)
+  1) 실패한 월의 scratch 디렉터리를 제거한다(다른 월은 유지).
+  2) 동일 커맨드를 재실행한다(월평균은 concat 후 `os.replace`로 교체되어 안전하다).
+  3) 반복 실패할 경우 오답노트에 원인/조치/재현 절차를 기록하고, 실행 지침의 관련 항목(본 문서 E–F, 03 실행 지침 H)을 교정한다.
+
+참고: 실행 자체에 대한 상세 체크리스트와 재시작 지침은 `docs/guidelines/03_code_execution.md` H 절을 따른다.

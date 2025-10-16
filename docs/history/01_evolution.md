@@ -34,9 +34,9 @@
    - \(T_b\)는 **셀내 선형 보간**,  
    - (선택) 표면 \(T(0)\) 저장(상층 외삽).  
    → \(\Delta T\)가 **0.1–0.6 K** 범위로 안정.
-3) **엔트레인먼트 안정화 옵션** 추가:  
-   - `we-mode`(dhdt/deepening/centered/full), `we-cap-md`, `hmin`, `ent-only-cooling` 등.  
-   - 이후 데이터 품질 확보 후 **제약 해제** 모드로 운영 가능.
+3) **엔트레인먼트 안정화 옵션** 추가→정리:  
+   - `we-mode`(dhdt/deepening/centered/full), `we-cap-md` 등을 단계적으로 도입.  
+   - 분모 하한(`--hmin`)은 2025-10-01에 완전히 제거되고, 0/결측 두께는 NaN으로 남겨 후처리에서 제외.
 4) **텐던시 이중 저장**: forward + centered → 월평균 민감도/경계일 영향 점검.
 5) **닫힘/잔차 출력**: `clos_d2_ten*`, `ent_resid_*`로 구성항 스케일 검증.
 

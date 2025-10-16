@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>404 File not Found | EPIC</title>
+	
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="UTF-8" />
+
+        <!-- jquery -->
+        <script type="text/javascript" src="/javascript/jquery-2.2.0.min.js">// <!-- No script --></script>
+        <script type="text/javascript" src="/javascript/jquery-ui.js">// <!-- No script --></script>
+        <link rel="stylesheet" href="/style/jquery-ui.min.css" />
+        <script type="text/javascript" src="/javascript/jquery.history.js">// <!-- No script --></script>
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="/style/bootstrap.min.css" />
+        <script type="text/javascript" src="/javascript/bootstrap.min.js">// <!-- No script --></script>
+
+        <!-- colorpicker -->
+        <link rel="stylesheet" href="/style/bootstrap-colorpicker.css" />
+        <script type="text/javascript" src="/javascript/bootstrap-colorpicker.js">// <!-- No script --></script>
+
+        <!-- typeahead -->
+        <script type="text/javascript" src="/javascript/bootstrap3-typeahead.js">// <!-- No script --></script>
+
+        <!-- fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" href="/style/font-awesome.min.css" />
+
+        <!-- utils -->
+        <script type="text/javascript" src="/javascript/js.cookie.js">// <!-- No script --></script>
+
+        <!-- our stuff -->
+        <script type="text/javascript" src="/javascript/jquery.busy.js">// <!-- No script --></script>
+        <script type="text/javascript" src="/javascript/jquery.tooltip.js">// <!-- No script --></script>
+        <script type="text/javascript" src="/javascript/jquery.share.js">// <!-- No script --></script>
+
+
+        <link rel="stylesheet" href="/style/main.css" />
+        <link rel="stylesheet" href="/style/awi-nav.css" />
+
+        <!-- default metadata -->
+        <meta name="title" content="ePic" />
+        <meta name="keywords" content="institutional repository research archive oaister AWI polar marine Alfred Wegener Institute Helmholtz Centre" />
+        <meta name="description" content="ePIC (electronic Publication Information Center) is the official repository for publications and presentations of Alfred Wegener Institute for Polar and Marine Research (AWI)" />
+
+	<script type="application/ld+json">
+        {
+                "@context": "http://schema.org",
+                "@type": ["WebSite", "Organization", "DataCatalog"],
+                "url": "https://epic.awi.de/",
+                "name": "AWI",
+                "disambiguatingDescription": "Official repository for publications and presentations of Alfred Wegener Institute (AWI) Helmholtz Centre for Polar and Marine Research",
+                "logo": "https://epic.awi.de/images/logos/awi_logo_text_w.png",
+                "inLanguage": "en",
+                "potentialAction": {
+                        "@type": "SearchAction",
+			"target": "https://epic.awi.de/cgi/facet/simple2?q={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                }
+        }
+        </script>
+
+	<script type="text/javascript">
+// <![CDATA[
+var eprints_http_root = "https://epic.awi.de";
+var eprints_http_cgiroot = "https://epic.awi.de/cgi";
+var eprints_oai_archive_id = "epic.awi.de";
+var eprints_logged_in = false;
+var eprints_logged_in_userid = 0; 
+var eprints_logged_in_username = ""; 
+var eprints_logged_in_usertype = ""; 
+// ]]></script>
+    <style type="text/css">.ep_logged_in { display: none }</style>
+    <link rel="stylesheet" type="text/css" href="/style/auto-3.4.3.css" />
+    <script type="text/javascript" src="/javascript/auto-3.4.3.js">
+//padder
+</script>
+    <!--[if lte IE 6]>
+        <link rel="stylesheet" type="text/css" href="/style/ie6.css" />
+   <![endif]-->
+    <meta name="Generator" content="EPrints 3.4.3" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <link rel="Top" href="https://epic.awi.de/" />
+    <link rel="Sword" href="https://epic.awi.de/sword-app/servicedocument" />
+    <link rel="SwordDeposit" href="https://epic.awi.de/id/contents" />
+    <link rel="Search" type="text/html" href="https://epic.awi.de/cgi/search" />
+    <link rel="Search" type="application/opensearchdescription+xml" href="https://epic.awi.de/cgi/opensearchdescription" title="EPIC" />
+    
+</head>
+<body>
+	<div id="header">
+                
+		<div id="smallheader">
+			
+                        <div id="headerleft">EPIC.awi.de</div>
+
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                        </button>
+                        <div id="navbar" aria-expanded="true">
+                                <ul class="nav navbar-nav navbar-right">
+                                        <li><a id="homelink" href="https://epic.awi.de/"><span class="glyphicon glyphicon-home"> </span></a></li>
+                                        <li>
+                                                <a href="https://epic.awi.de/view/" target="_self" menu="ep_tm_menu_browse" title="Browse">Browse</a>
+                                        </li>
+                                        <li>
+						<a href="https://epic.awi.de/cgi/facet/simple2" target="_self" menu="ep_tm_menu_search" title="Search">Search</a>
+                                        </li>
+                                        <li>
+                                                <a href="https://epic.awi.de/information.html" target="_self" menu="ep_tm_menu_about" title="About">About</a>
+                                        </li>
+                                        <li>
+                                                <a href="https://epic.awi.de/cgi/users/home" target="_self" menu="ep_tm_menu_login" title="Login">Login</a>
+                                        </li>
+                                </ul>
+                        </div>
+			
+			<div id="searchbar-wrapper">
+                                <div class="row no-margin">
+                                        <div id="searchbar" class="col-md-8 col-md-pull-2 col-xs-12 pull-right">
+                                                <form name="search" id="searchform" class="input-group" action="https://epic.awi.de/cgi/facet/simple2">
+							<input type="text" name="q" placeholder="Search on title, author name, ORCID, full-text ..." id="query" />
+							<button id="query-submit" type="submit" name="submit"><span class="query-icon"></span></button>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+
+                </div>
+
+                <div id="mainheader">
+                        
+			<div id="headerbar">
+                                <ul class="nav">
+                                        <li><a id="homelink" href="https://epic.awi.de/"><span class="glyphicon glyphicon-home"> </span></a></li>
+                                        <li class="ep_top_menu_item">
+                                                <a href="https://epic.awi.de/view/" target="_self" menu="ep_tm_menu_browse" title="Browse">Browse</a>
+                                        </li>
+                                        <li class="ep_top_menu_item">
+						<a href="https://epic.awi.de/cgi/facet/simple2" target="_self" menu="ep_tm_menu_search" title="Search">Search</a>
+                                        </li>
+                                        <li class="ep_top_menu_item">
+                                                <a href="https://epic.awi.de/information.html" target="_self" menu="ep_tm_menu_about" title="About">About</a>
+                                        </li>
+                                </ul>
+                        </div>
+
+                        
+                        <div id="headerleft">EPIC.awi.de</div>
+
+                        <div id="headerright">
+                                <div class="ep_epic_login"><span class="glyphicon glyphicon-log-in"></span><a href="/cgi/users/home">Login</a></div>
+                        </div>
+                        
+			<div id="searchbar-wrapper">
+                                <div class="row no-margin">
+                                        <div id="searchbar" class="col-md-8 col-md-pull-2 col-xs-12 pull-right">
+                                                <form name="search" id="searchform" class="input-group" action="https://epic.awi.de/cgi/facet/simple2">
+							<input type="text" name="q" placeholder="Search on title, author name, ORCID, full-text ..." id="query" />
+							<button id="query-submit" type="submit" name="submit"><span class="query-icon"></span></button>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div class="ep_admin_menu">
+                                <ul class="ep_tm_key_tools" id="ep_tm_menu_tools" role="toolbar"></ul>
+                        </div>
+                </div>
+        </div>
+
+	<div id="main" class="content default">
+		<h1 class="ep_tm_pagetitle">
+                	404 File not Found
+                </h1>
+		<p>Could not find the file: <code>/id/eprint/39698/1/NEMO_book_v3_4.pdf</code></p><p>The file you are trying to access may be related to this item:</p><p>
+
+
+
+
+	
+	<div style="text-align:left; font-size:0.8em;">
+		PANGAEA Documentation
+		
+		
+		
+	</div>
+ 
+
+			
+	<span><span class="person">Madec, G. </span> and <span class="person">NEMO team, .. </span></span>			
+
+
+	
+
+(2015)
+<br />
+
+
+	<a href="https://epic.awi.de/id/eprint/39698/">NEMO ocean engine</a>	
+	<!--<if test="is_set(editors)"><print expr="$item.citation('renderEditors_noLink')" /></if>-->
+	 
+		,
+
+
+<div>
+	
+ 
+
+
+
+				
+		
+		Paris, France,		
+		Institut Pierre-Simon Laplace
+		
+		
+		
+				
+		.
+	  
+
+
+
+</div>
+
+
+
+  	hdl:<a href="http://hdl.handle.net/10013/epic.46840" target="_blank">10013/epic.46840</a>	
+
+</p><p>If you reached this page by following a link within the repository, please contact the <a href="mailto:epic@awi.de">EPIC administration</a>.  Otherwise, please check that you have typed the URL in correctly, or contact the person or site that supplied you with this URL.</p>
+	</div>
+	
+	
+	<div id="footer">
+                <div id="global-footer" class="bg_awi_tiefblau">
+                        <div class="row">
+                                <div id="footer-logos">
+                                        <img src="/images/logos/awi_logo_weiss.png" style="max-width: 390px; float: left;" />
+                                        <img src="/images/logos/helmholtz_logo.png" style="max-width: 450px; float: left;" />
+                                </div>
+                                <div class="footer-menu-02">
+                                         <ul style="margin: 10px 0 0 0; text-align: center;" id="footer-menu">
+                                                <li>
+                                                        <a href="https://epic.awi.de/view/" target="_self" menu="ep_tm_menu_browse" title="Browse">Browse</a>
+                                                </li>
+                                                <li>
+							<a href="https://epic.awi.de/cgi/facet/simple2" target="_self" menu="ep_tm_menu_search" title="Search">Search</a>
+                                                </li>
+                                                <li>
+                                                        <a href="https://epic.awi.de/information.html" target="_self" menu="ep_tm_menu_about" title="About">About</a>
+                                                </li>
+                                        </ul>
+                                </div>
+                                <div class="col-lg-offset-2 col-lg-8 col-1660-offset-1 col-1660-10 col-1400-offset-0 col-1400-12">
+                                        <div id="footer-copy">© Wegener-Institut</div>
+                                        <div class="col-sm-4 col-xs-6" id="footer-links">
+                                                <div class="content-wrapper">
+                                                        <div class="footer-menu-02">
+                                                                <ul class="footer_int_links">
+                                                                        <li>
+                                                                                <a href="https://epic.awi.de/LegalNotice.html" target="_self" class="u-brandColor-tertiary--light u-fs13">Legal Notice</a>
+                                                                        </li>
+                                                                        <li>
+                                                                                <a href="https://epic.awi.de/PrivacyPolicy.html" target="_self" class="u-brandColor-tertiary--light u-fs13">Privacy Policy</a>
+                                                                        </li>
+                                                                        <li>
+                                                                                <a href="https://epic.awi.de/information.html" target="_self" class="u-brandColor-tertiary--light u-fs13">Contact</a>
+                                                                        </li>
+                                                                        <li>
+                                                                                <a href="https://epic.awi.de/cgi/oai2?verb=Identify" target="_self" class="u-brandColor-tertiary--light u-fs13">OAI</a>
+                                                                        </li>
+                                                                        <li>
+                                                                                <a href="https://epic.awi.de/cgi//latest_tool?output=RSS2" class="u-brandColor-tertiary--light u-fs13">RSS 2.0</a>
+                                                                        </li>
+                                                                </ul>
+                                                        </div>
+                                                </div>
+                                        </div>
+					<div class="col-sm-4 col-xs-6" id="footer-social">
+                                                <div class="content-wrapper">
+                                                        <div id="social-icons" class="footer-menu-03" style="text-align: right;">
+                                                                <ul class="social">
+                                                                        <li title="Facebook"><a href="https://www.facebook.com/AlfredWegenerInstitut"><i class="fa fa-facebook"></i></a></li>
+                                                                        <li title="Instagram"><a href="https://www.instagram.com/awiexpedition/"><i class="fa fa-instagram"></i></a></li>
+                                                                        <li title="Twitter"><a href="https://twitter.com/awi_de"><i class="fa fa-twitter"></i></a></li>
+                                                                        <li title="YouTube"><a href="https://www.youtube.com/channel/UCljKBoLBJqy8XASA3QKrRxA/"><i class="fa fa-youtube"></i></a></li>
+                                                                </ul>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                </div>
+        </div>
+
+</body>
+
+</html>

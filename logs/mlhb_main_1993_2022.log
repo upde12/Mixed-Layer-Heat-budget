@@ -1,0 +1,15 @@
+[RUN] .venv/bin/python llm-ops/scripts/run_mlhb_monthly_main.py --start 1993-01 --end 2022-12 --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --out /Volumes/HJPARK4/Decadal/source/ML_budget/output/monthly/mlhb_monthly_main_1993_2022.nc --temp-root /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily --python .venv/bin/python --workers auto --ah 100 --kv 1e-4 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+/Users/hjpark/Desktop/GPT/.venv/bin/python: can't open file '/Users/hjpark/Desktop/GPT/src/process_d2nf_main.py': [Errno 2] No such file or directory
+===== 1993-01 =====
+[RUN] .venv/bin/python src/process_d2nf_main.py --indir /Volumes/HJPARK4/MHW/data/GLORYS/ncfiles --outdir /Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily/1993/01 --fluxdir /Volumes/HJPARK4/MHW/data/ERA5/daily_EA --years 1993:1993 --start-date 1993-01-01 --end-date 1993-01-31 --workers auto --ah 100.0 --kv 0.0001 --we-mode deepening --mld-source recompute --mld-threshold 0.03 --mld-ref-depth 10.0
+[ERR] 1993-01: Command '['.venv/bin/python', 'src/process_d2nf_main.py', '--indir', '/Volumes/HJPARK4/MHW/data/GLORYS/ncfiles', '--outdir', '/Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily/1993/01', '--fluxdir', '/Volumes/HJPARK4/MHW/data/ERA5/daily_EA', '--years', '1993:1993', '--start-date', '1993-01-01', '--end-date', '1993-01-31', '--workers', 'auto', '--ah', '100.0', '--kv', '0.0001', '--we-mode', 'deepening', '--mld-source', 'recompute', '--mld-threshold', '0.03', '--mld-ref-depth', '10.0']' returned non-zero exit status 2.
+Traceback (most recent call last):
+  File "/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py", line 223, in <module>
+    main()
+  File "/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py", line 211, in main
+    daily_nc = run_daily(window, args)
+  File "/Users/hjpark/Desktop/GPT/llm-ops/scripts/run_mlhb_monthly_main.py", line 102, in run_daily
+    subprocess.run(cmd, check=True)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 528, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['.venv/bin/python', 'src/process_d2nf_main.py', '--indir', '/Volumes/HJPARK4/MHW/data/GLORYS/ncfiles', '--outdir', '/Volumes/HJPARK4/Decadal/source/ML_budget/tmp_daily/1993/01', '--fluxdir', '/Volumes/HJPARK4/MHW/data/ERA5/daily_EA', '--years', '1993:1993', '--start-date', '1993-01-01', '--end-date', '1993-01-31', '--workers', 'auto', '--ah', '100.0', '--kv', '0.0001', '--we-mode', 'deepening', '--mld-source', 'recompute', '--mld-threshold', '0.03', '--mld-ref-depth', '10.0']' returned non-zero exit status 2.
